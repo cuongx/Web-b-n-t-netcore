@@ -1,0 +1,22 @@
+﻿@{
+    ViewBag.Title = "Not Found";
+}
+
+@*<div class="alert alert-danger">
+    <h1>@ViewBag.ErrorMessage</h1>
+    <hr />
+</div>*@
+<div class="container-fluid">
+
+    <!-- 404 Error Text -->
+    <div class="alert alert-danger">
+        <div class="error mx-auto" data-text="404"><h1>404</h1></div>
+        <p class="lead text-gray-800 mb-5">@ViewBag.ErrorMessage</p>
+        <p class="text-gray-500 mb-0">It looks like you found a glitch in the matrix...</p>
+        <a asp-controller="Home" asp-action="Index">&larr; Click here to navigate to the home page</a>
+    </div>
+
+</div>
+@*<a asp-controller="Home" asp-action="Index" class="btn btn-danger">
+    Click here to navigate to the home page
+</a>*@

@@ -1,0 +1,84 @@
+﻿
+@model List<Description>;
+
+@{
+    ViewBag.Title = "Description Views";
+}
+<div class="container-fluid">
+    <div class="card">
+        <div class="card-body">
+            <form class="form-inline">
+                <div class="md-form my-0 ">
+                    <input id="myInput" class="form-control" type="text" placeholder="Search..." aria-label="Search">
+                </div>
+            </form>
+        </div>
+        <h3 class="card-header text-center font-weight-bold text-uppercase py-2">Description</h3>
+        <div class="card-body">
+            <div  class="table-editable">
+                <span class="table-add float-right mb-3 mr-2">
+                    <a asp-controller="Description" asp-action="Create" class="text-success">
+                        <i class="fas fa-plus fa-2x" aria-hidden="true"></i>
+                    </a>
+                </span>
+                <table id="table" class="table table-bordered table-responsive-md table-striped text-center">
+                    <thead>
+                        <tr>
+                            <th>ID</th>
+                            <th>Originame</th>
+                            <th>Sort</th>
+                            <th>Action</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        @if (Model != null && Model.Any())
+                        {
+                            @foreach (var role in Model)
+                            {
+                                <tr>
+                                    <td>@role.DescriptionId</td>
+                                    <td>@role.OriginName</td>
+                                    <td class="pt-3-half">
+                                        <span class="table-up">
+                                            <a href="#!" class="indigo-text">
+                                                <i class="fas fa-long-arrow-alt-up"
+                                                   aria-hidden="true"></i>
+                                            </a>
+                                        </span>
+                                        <span class="table-down">
+                                            <a href="#!" class="indigo-text">
+                                                <i class="fas fa-long-arrow-alt-down"
+                                                   aria-hidden="true"></i>
+                                            </a>
+                                        </span>
+                                    </td>
+                                    <td>
+                                        <span class="table-remove">
+                                            <a asp-controller="Description" asp-action="Edit" asp-route-id="@role.DescriptionId" class="btn btn-success mx-2">Edit</a>
+                                            <a asp-controller="Description" asp-action="Delete" class="btn btn-danger" asp-route-id="@role.DescriptionId">Delete</a>
+                                        </span>
+                                    </td>
+                                </tr>
+                            }
+                        }
+
+                    </tbody>
+                </table>
+            </div>
+        </div>
+    </div>
+
+</div>
+
+@section Scripts{
+    <script>
+        $(document).ready(function () {
+            $("#myInput").on("keyup", function () {
+                var value = $(this).val().toLowerCase();
+                $("#table td").filter(function () {
+                    $(this).toggle($(this).text().toLowerCase().indexOf(value) > -1)
+                });
+            });
+        });
+    </script>
+}

@@ -1,0 +1,24 @@
+﻿@model CarbrandEditViewsModel
+
+@{
+    ViewBag.Title = "Carbrand Edit";
+}
+
+    <form asp-controller="Carbrand" asp-action="Edit" method="post">
+        <div class="text-danger" asp-validation-summary="All"></div>
+        <input hidden asp-for="Id"/>
+        <div class="form-group row">
+            <div class="col-sm-12">
+                <label class="ml-3 mx-3 text-white" asp-for="Name" style="color:crimson"></label>
+                <input asp-for="Name" />
+                @*<span asp-validation-for="RoleName" class="text-danger"></span>*@
+            </div>
+        </div>
+        <div class="form-group row">
+            <div class="col-sm-12">
+                <button type="submit" class="btn btn-info ">CreateRole<i class="fas fa-heart ml-2" aria-hidden="true"></i></button>
+                <a class="btn btn-success" asp-controller="Carbrand" asp-action="Index">Back</a>
+            </div>
+        </div>
+
+    </form>

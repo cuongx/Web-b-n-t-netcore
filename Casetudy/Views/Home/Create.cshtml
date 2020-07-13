@@ -1,0 +1,88 @@
+﻿@model HomeCreateViewsModel
+@{
+    ViewBag.Title = "Home Create";
+    var carbrand = ViewBag.Carbrands as List<Carbrand>;
+    var description = ViewBag.Descriptions as List<Description>;
+
+}
+<form enctype="multipart/form-data" asp-controller="Home" asp-action="Create" method="post">
+    <div class="form-group row">
+        <label class="col-sm-2 col-form-label text-white" asp-for="Name"></label>
+        <div class="col-sm-10">
+            <input class="form-control" asp-for="Name" placeholder="Name">
+            <span class="text-danger" asp-validation-for="Name"></span>
+        </div>
+    </div>
+    <div class="form-group row">
+        <label class="col-sm-2 col-form-label text-white" asp-for="Price"></label>
+        <div class="col-sm-10">
+            <input class="form-control" asp-for="Price" placeholder="Price">
+            <span class="text-danger" asp-validation-for="Price"></span>
+        </div>
+    </div>
+
+    <div class="form-group row">
+        <label class="col-sm-2 col-form-label text-white" asp-for="CarbrandId">Carbrand</label>
+            <select class="col-sm-10 " asp-for="CarbrandId">
+                <option value="">Select a CarbranId</option>
+                    @if (carbrand != null)
+                    {
+                        foreach (var dept in carbrand)
+
+                        {
+
+                              <option value="@dept.CarbrandId">@dept.CarbrandName</option>
+                        }
+                    }
+            </select>
+        </div>
+
+    <div class="form-group row">
+
+        @if (description != null)
+            @foreach (var dept in description)
+            {
+                <label class=" col-sm-2 form-check-label text-white">@dept.OriginName</label>
+                <div class="col-sm-10">
+                    <div class="form-check">
+                        <input name="Descriptions" type="checkbox" class="form-check-input" value="@dept.DescriptionId">
+                        @*<label class="form-check-label">@dept.OriginName</label>*@
+                    </div>
+
+                </div>
+            }
+    </div>
+
+    <div class="form-group row">
+        <label class="col-sm-2 col-form-label text-white" asp-for="Avatar"></label>
+        <div class="custom-file col-sm-10">
+            <input class="custom-file-input" asp-for="Avatar">
+            <label class="custom-file-label" id="avatar" for="custom-file">Choose file</label>
+        </div>
+    </div>
+
+    @*<div class="row col-4 offset-4">
+            <img src="@avatarPath" class="myImage" style="height:250px" ;width="auto" asp-append-version="true" />
+        </div>*@
+
+    <div asp-validation-summary="All"></div>
+    <div class="form-group row">
+        <div class="col-sm-12">
+            <button type="submit" class="btn btn-danger mx-2">Create</button>
+            <a class="btn btn-primary mx-2" asp-controller="Home" asp-action="Index">Back</a>
+        </div>
+    </div>
+</form>
+
+@section Scripts{
+
+<script>
+    $(Document).ready(function (){
+    $(".custom-file-input").on("change", function () {
+        var fileName = $(this).val().split("\\").pop();
+        $(this).siblings(".custom-file-label").addClass("selected").html(fileName);
+          $("#avatar").attr("src", window.URL.createObjectURL($(this)[0].files[0]));
+    });
+    });
+</script>
+}

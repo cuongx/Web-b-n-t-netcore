@@ -1,0 +1,76 @@
+﻿@model RegisterViewsModel
+
+@{
+    ViewBag.Title = "Register Views Model";
+}
+@*<div class="tab-pane fade" role="tabpanel">
+    <form enctype="multipart/form-data" asp-controller="Account" asp-action="Register" method="post">
+        <div class="modal-body">
+            <div class="md-form form-sm mb-5">
+                <i class="fas fa-envelope prefix"></i>
+                <input asp-for="Email" class="form-control form-control-sm validate">
+                <label data-error="wrong" data-success="right" asp-for="Email">Your email</label>
+                <span asp-validation-for="Email"></span>
+            </div>
+
+            <div class="md-form form-sm mb-5">
+                <i class="fas fa-lock prefix"></i>
+                <input type="password" asp-for="Password" class="form-control form-control-sm validate">
+                <label data-error="wrong" data-success="right" asp-for="Password">Your password</label>
+            </div>
+
+            <div class="md-form form-sm mb-4">
+                <i class="fas fa-lock prefix"></i>
+                <input type="password" asp-for="CofirmPassword" class="form-control form-control-sm validate">
+                <label data-error="wrong" data-success="right" asp-for="CofirmPassword">Repeat password</label>
+            </div>
+
+            <div class="text-center form-sm mt-2">
+                <button class="btn btn-info">Sign up <i class="fas fa-sign-in ml-1"></i> </button>
+            </div>
+
+        </div>
+
+        <div class="modal-footer">
+            <div class="options text-right">
+                <p class="pt-1">Already have an account? <a href="#" class="blue-text">Log In</a></p>
+            </div>
+            <button type="button" class="btn btn-outline-info waves-effect ml-auto" data-dismiss="modal">Close</button>
+        </div>
+
+    </form>
+</div>*@
+
+
+<form asp-controller="Account" asp-action="Register" method="post">
+        <div class="text-danger" asp-validation-summary="All"></div>
+        <div class="form-group row">
+            <label class="col-sm-2 col-form-label" asp-for="Email"></label>
+            <div class="col-sm-10">
+                <input class="form-control" asp-for="Email" placeholder="Email">
+                <span class="text-danger" asp-validation-for="Email"></span>
+            </div>
+        </div>
+        <div class="form-group row">
+            <label class="col-sm-2 col-form-label" asp-for="Password"></label>
+            <div class="col-sm-10">
+                <input class="form-control" asp-for="Password" placeholder="Password">
+                <span class="text-danger" asp-validation-for="Password"></span>
+            </div>
+        </div>
+        <div class="form-group row">
+            <label class="col-sm-2 col-form-label" asp-for="CofirmPassword"></label>
+            <div class="col-sm-10">
+                <input class="form-control" asp-for="CofirmPassword" placeholder="CofimPassword">
+                <span class="text-danger" asp-validation-for="CofirmPassword"></span>
+            </div>
+        </div>
+        <div class="form-group row">
+            <div class="col-sm-12">
+                <button type="submit" class="btn btn-danger mx-2">Register</button>
+                <a class="btn btn-primary mx-2" asp-controller="Home" asp-action="Index">Back</a>
+     
+            </div>
+        </div>
+
+    </form>

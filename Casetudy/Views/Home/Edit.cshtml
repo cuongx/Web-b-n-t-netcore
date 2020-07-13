@@ -1,0 +1,96 @@
+﻿@model HomeEditViewsModel
+
+@{
+    ViewBag.Title = "Home Edit ";
+    var avatarPath = $"/images/{(Model.AvatarPath ?? "cd-5.jpg")}";
+    var carbrand = ViewBag.Carbrands as List<Carbrand>;
+    var description = ViewBag.Descriptions as List<Description>;
+}
+
+
+    <form enctype="multipart/form-data" asp-controller="Home" asp-action="Edit" method="post">
+        <div asp-validation-summary="All" class="text-danger"></div>
+        <input hidden asp-for="Id" />
+        <div class="form-group row">
+            <label class="col-sm-2 col-form-label" asp-for="Name"></label>
+            <div class="col-sm-10">
+                <input class="form-control" asp-for="Name" placeholder="Name">
+                <span class="text-danger" asp-validation-for="Name"></span>
+            </div>
+        </div>
+        <div class="form-group row">
+            <label class="col-sm-2 col-form-label" asp-for="Price"></label>
+            <div class="col-sm-10">
+                <input class="form-control" asp-for="Price" placeholder="Price">
+                <span class="text-danger" asp-validation-for="Price"></span>
+            </div>
+        </div>
+        <div class="form-group row">
+            <label class="col-sm-2 col-form-label" asp-for="CarbrandId"></label>
+            <select class="col-sm-10" asp-for="CarbrandId">
+                <option value="">Select a CarbranId</option>
+                @if (carbrand != null)
+                {
+                    foreach (var dept in carbrand)
+
+                    {
+
+                        <option value="@dept.CarbrandId" selected="@(dept.CarbrandId == @Model.CarbrandId)">@dept.CarbrandName</option>
+                    }
+                }
+            </select>
+        </div>
+
+        <div class="form-group row">
+
+            @if (description !=null)
+            {
+
+            @foreach (var emp in description)
+                {
+                    <label class=" col-sm-2 form-check-label">@emp.OriginName</label>
+                    <div class="col-sm-10">
+                        <div class="form-check">
+                           <input name="Descriptions" value="@emp.DescriptionId" type="checkbox" class="form-check-input"
+                                 checked="@(Model.SelectDescriptions.Where
+                                  (l => l.DescriptionId == emp.DescriptionId).ToList().Count() >0)"/>
+                            @*<label class="form-check-label">@dept.OriginName</label>*@
+                        </div>
+
+                    </div>
+               }
+            }
+        </div>
+
+        <div class="form-group row">
+            <label class="col-sm-2 col-form-label" asp-for="Avatar"></label>
+            <div class="custom-file col-sm-10">
+                <input class="custom-file-input" value="@Model.Avatar" asp-for="Avatar">
+                <label class="custom-file-label" id="avatar" for="custom-file">@Model.AvatarPath</label>
+            </div>
+        </div>
+        <div class="row col-4 offset-4 justify-content-center">
+            <img src="@avatarPath" class="MyImage" asp-append-version="true" />
+        </div>
+        @*<div asp-validation-summary="All"></div>*@
+        <div class="form-group row">
+            <div class="col-sm-12">
+                <button type="submit" class="btn btn-danger mx-2">Update</button>
+                <a class="btn btn-primary mx-2" asp-controller="Home" asp-action="Index">Back</a>
+            </div>
+        </div>
+    </form>
+
+
+@section Scripts{ 
+
+    <script>
+    $(document).ready(function (){
+    $(".custom-file-input").on("change", function () {
+        var fileName = $(this).val().split("\\").pop();
+        $(this).siblings(".custom-file-label").addClass("selected").html(fileName);
+          $("#avatar").attr("src", window.URL.createObjectURL($(this)[0].files[0]));
+      });
+    });
+    </script>
+}

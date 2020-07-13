@@ -1,0 +1,52 @@
+﻿<Project Sdk="Microsoft.NET.Sdk.Web">
+
+  <PropertyGroup>
+    <TargetFramework>netcoreapp3.1</TargetFramework>
+    <UserSecretsId>11869c43-9758-4cf3-b651-4f5c15d1ad89</UserSecretsId>
+  </PropertyGroup>
+
+  <ItemGroup>
+    <Compile Remove="Migrations\20200706050248_InitDb.cs" />
+    <Compile Remove="Migrations\20200706050248_InitDb.Designer.cs" />
+    <Compile Remove="Migrations\20200706050434_InitDb.cs" />
+    <Compile Remove="Migrations\20200706050434_InitDb.Designer.cs" />
+    <Compile Remove="Migrations\20200707045934_CreateCarbrandTable.cs" />
+    <Compile Remove="Migrations\20200707045934_CreateCarbrandTable.Designer.cs" />
+    <Compile Remove="Migrations\20200707053801_CreateCarbrandTable.cs" />
+    <Compile Remove="Migrations\20200707053801_CreateCarbrandTable.Designer.cs" />
+    <Compile Remove="Migrations\20200707060039_ExtendAspNetUserTable.cs" />
+    <Compile Remove="Migrations\20200707060039_ExtendAspNetUserTable.Designer.cs" />
+    <Compile Remove="Migrations\20200711150008_CreateOrderTable.cs" />
+    <Compile Remove="Migrations\20200711150008_CreateOrderTable.Designer.cs" />
+    <Compile Remove="Migrations\20200711154848_CreateOrderTable.cs" />
+    <Compile Remove="Migrations\20200711154848_CreateOrderTable.Designer.cs" />
+    <Compile Remove="Migrations\20200711155343_CreateOrderTable.cs" />
+    <Compile Remove="Migrations\20200711155343_CreateOrderTable.Designer.cs" />
+    <Compile Remove="Migrations\20200711155804_CreateOrderTable.cs" />
+    <Compile Remove="Migrations\20200711155804_CreateOrderTable.Designer.cs" />
+    <Compile Remove="Migrations\20200711161034_CreateOrderTable.cs" />
+    <Compile Remove="Migrations\20200711161034_CreateOrderTable.Designer.cs" />
+    <Compile Remove="Migrations\20200711163337_AlterOrderTable.cs" />
+    <Compile Remove="Migrations\20200711163337_AlterOrderTable.Designer.cs" />
+    <Compile Remove="Migrations\20200711170113_Update20200711163337_AlterOrderTable.cs" />
+    <Compile Remove="Migrations\20200711170113_Update20200711163337_AlterOrderTable.Designer.cs" />
+    <Compile Remove="Migrations\20200711170331_UpdateAlterOrderTable.cs" />
+    <Compile Remove="Migrations\20200711170331_UpdateAlterOrderTable.Designer.cs" />
+    <Compile Remove="Migrations\20200712011552_Update20200711161300_CreateOrderTable.cs" />
+    <Compile Remove="Migrations\20200712011552_Update20200711161300_CreateOrderTable.Designer.cs" />
+    <Compile Remove="Migrations\20200712013517_UpdatteCreateOrderTable.cs" />
+    <Compile Remove="Migrations\20200712013517_UpdatteCreateOrderTable.Designer.cs" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <PackageReference Include="Microsoft.AspNetCore.Identity.EntityFrameworkCore" Version="3.1.5" />
+    <PackageReference Include="Microsoft.EntityFrameworkCore" Version="3.1.5" />
+    <PackageReference Include="Microsoft.EntityFrameworkCore.SqlServer" Version="3.1.5" />
+    <PackageReference Include="Microsoft.EntityFrameworkCore.Tools" Version="3.1.5">
+      <PrivateAssets>all</PrivateAssets>
+      <IncludeAssets>runtime; build; native; contentfiles; analyzers; buildtransitive</IncludeAssets>
+    </PackageReference>
+    <PackageReference Include="Microsoft.Extensions.Identity.Core" Version="3.1.5" />
+  </ItemGroup>
+
+</Project>

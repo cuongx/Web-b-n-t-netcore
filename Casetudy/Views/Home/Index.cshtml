@@ -1,0 +1,72 @@
+﻿@model SearchViewsModels
+@{
+    ViewBag.Title = "Index";
+    var category = ViewBag.Employees as List<Employees>;
+}
+
+<div class="container">
+    <div>
+        <form class="form-inline md-form mr-auto mb-4" asp-controller="Home" asp-action="Search" asp-route-id="@Model.SearchKey" method="post">
+            <input class="form-control form-control-sm ml-3 w-75 text-white" asp-for="SearchKey" type="text" placeholder="Search" aria-label="Search">
+            <button class="btn btn-outline-warning btn-rounded btn-sm my-0" type="submit">Search</button>
+        </form>
+      
+        @*<form class="form-inline active-cyan-3 active-cyan-4" asp-controller="Home" asp-action="Search" asp-route-id="@Model.SearchKey" method="post">
+            <button type="submit" class="fas fa-search bg-danger" aria-hidden="true"></button>
+            <input class="form-control form-control-sm ml-3 w-75" type="text" asp-for="SearchKey" placeholder="Search" aria-label="Search">
+        </form>*@
+        <div class="row justify-content-center mt-3">
+            @foreach (var employee in Model.Employees)
+            {
+                var avatarPath = $"/images/{employee.AvatarPath ?? "FORRD"}";
+                <div class="col-md-3 visible" style="color:#fdd835">
+                    <div class="card my-4 text-center">
+
+                        <img src="@avatarPath" class="MyImage" asp-append-version="true" />
+                        <div id="search" class="card-footer">
+
+                            <a asp-controller="Home" asp-action="Details" asp-route-id="@employee.Id" class="card-text"><h6>@employee.Name</h6></a>
+                            <span class="woocommerce-Price-amount amount text-danger">@employee.Price&nbsp;<span class="woocommerce-Price-currencySymbol">₫</span></span>
+                        </div>
+                        <div class="card-body">
+                            <a>Hộp số:Số tự động</a>
+                            @*<h3 class="font-weight-bolder text-danger">$@employee.Price</h3>*@
+
+                        </div>
+
+                        @*<div class="card-body text-center">
+                        @if (User.IsInRole("Cường"))
+                        {
+                            <a asp-controller="Home" asp-action="Edit" asp-route-id="@employee.Id" class="btn btn-warning">Edit</a>
+                            <a asp-controller="Home" asp-action="Details" asp-route-id="@employee.Id" class="btn btn-danger">Delete</a>
+                            <a asp-controller="Home" asp-action="Details" asp-route-id="@employee.Id" class="btn btn-primary">View</a>
+                        }
+                        else
+                        {
+                            <a asp-controller="Home" asp-action="Details" asp-route-id="@employee.Id" class="btn btn-primary">View</a>
+                            <a asp-controller="Order" asp-action="Create" asp-route-id="@employee.Id" class="btn btn-primary">Car</a>
+                        }
+                        </div>*@
+
+
+                    </div>
+
+                </div>
+            }
+        </div>
+    </div>
+</div>
+
+
+@section Scripts{
+    <script>
+        $(document).ready(function () {
+            $("#myInput").on("keyup", function () {
+                var value = $(this).val().toLowerCase();
+                $("#search h2").filter(function () {
+                    $(this).toggle($(this).text().toLowerCase().indexOf(value) > -1)
+                });
+            });
+        });
+    </script>
+}

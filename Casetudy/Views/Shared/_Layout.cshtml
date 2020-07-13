@@ -1,0 +1,328 @@
+﻿@inject SignInManager<ApplicationUser> signInManager
+@*@{ 
+    List<Carbrand> carbrands = ViewBag.Category;
+}*@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>@ViewData["Title"] - Casetudy</title>
+    <link href="~/lib/bootstrap/dist/css/bootstrap.css" rel="stylesheet" />
+    <link rel="stylesheet" href="~/css/site.css" />
+    <link href="https://stackpath.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css" />
+
+
+
+
+    <!-- Font Awesome -->
+    <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.8.2/css/all.css">
+    <!-- Google Fonts -->
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Roboto:300,400,500,700&display=swap">
+    <!-- Bootstrap core CSS -->
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/4.4.1/css/bootstrap.min.css" rel="stylesheet">
+    <!-- Material Design Bootstrap -->
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/mdbootstrap/4.15.0/css/mdb.min.css" rel="stylesheet">
+
+
+
+
+    @*<script src="~/lib/jquery/jquery.js"></script>*@
+
+
+
+    <!-- JQuery -->
+    <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
+    <script src="~/lib/jquery-validate/jquery.validate.js"></script>
+    <script src="~/lib/validation-unobtrusive/jquery.validate.unobtrusive.js"></script>
+    <script src="~/lib/bootstrap/dist/js/bootstrap.js"></script>
+    <!-- Bootstrap tooltips -->
+    <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.4/umd/popper.min.js"></script>
+    <!-- Bootstrap core JavaScript -->
+    <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/4.4.1/js/bootstrap.min.js"></script>
+    <!-- MDB core JavaScript -->
+    <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/mdbootstrap/4.15.0/js/mdb.min.js"></script>
+
+
+
+</head>
+<body>
+
+    <div class="container-fluid">
+        <ul class="nav justify-content-center bg-white lighten-4 py-4 font-weight-bold" style="color:#ff4757">
+            <li class="nav-item mx-2">
+                <a><img src="~/images/cooltext-357187382297985.gif" title="Logo" style="width:150px" height="35" /></a>
+            </li>
+            <li class="nav-item">
+                <a class="nav-link active" href="#!"><i class="fas fa-home text-dark px-2"></i>Nguyễn Tri Phương-Thừa Thiên Huế</a>
+            </li>
+            <li class="nav-item">
+                <a class="nav-link" href="#!"><i class="fas fa-phone-volume text-dark px-2"></i>098 590 8888 - 093 564 6666</a>
+            </li>
+            <li class="nav-item header-phone">
+                <a class="nav-link text-danger" href="#!"><i class="far fa-smile-beam fa-spin">-</i>@User.Identity.Name</a>
+            </li>
+            <li class="nav-item">
+                <a class="nav-link" href="#!"><i class="fas fa-fax ml-2 text-dark px-2"></i>Fax: 04.39276181.</a>
+            </li>
+        </ul>
+    </div>
+
+
+    @*<div class="container-fluid">
+            <div id="carouselExampleControls" class="carousel slide" data-ride="carousel" style="background-size:100px">
+                <div class="carousel-inner">
+                    <div class="carousel-item active">
+                        <img class="d-block w-100" src="~/images/cd-2.jpg" width="auto" height="250px"
+                             alt="First slide">
+                    </div>
+                    <div class="carousel-item">
+                        <img class="d-block w-100" src="~/images/cd-3.jpg" width="auto" height="250px"
+                             alt="Second slide">
+                    </div>
+                    <div class="carousel-item">
+                        <img class="d-block w-100" src="~/images/cd-4.jpg" width="auto" height="250px
+                             alt="Third slide">
+                    </div>
+                </div>
+                <a class="carousel-control-prev" href="#carouselExampleControls" role="button" data-slide="prev">
+                    <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+                    <span class="sr-only">Previous</span>
+                </a>
+                <a class="carousel-control-next" href="#carouselExampleControls" role="button" data-slide="next">
+                    <span class="carousel-control-next-icon" aria-hidden="true"></span>
+                    <span class="sr-only">Next</span>
+                </a>
+            </div>
+        </div>*@
+
+    <div class=" container-fluid my-1">
+        <!--Navbar-->
+        <nav class="navbar navbar-expand-lg navbar navbar-light lighten-4 pl-4">
+
+            <!-- Navbar brand -->
+            <a class="navbar-brand text-white ml-3" asp-controller="Home" asp-action="Index">Home</a>
+
+            <!-- Collapse button -->
+            <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#basicExampleNav"
+                    aria-controls="basicExampleNav" aria-expanded="true" aria-label="Toggle navigation">
+                <span class="navbar-toggler-icon"></span>
+            </button>
+
+            <!-- Collapsible content -->
+            <div class="collapse navbar-collapse" id="basicExampleNav">
+                <!-- Links -->
+                <ul class="navbar-nav mr-auto">
+                    <li class="nav-item active">
+                        @if (User.IsInRole("Admin")) {
+                        <a class="nav-link text-white" asp-controller="Home" asp-action="Create">
+                            Create
+                        </a>
+                            }
+                    </li>
+                    <li class="nav-item dropdown">
+                        <a class="nav-link dropdown-toggle text-white " data-toggle="dropdown" role="button" aria-haspopup="true"
+                           aria-expanded="false">
+                            Management
+                            <span class="sr-only">(current)</span>
+                        </a>
+                        <div class="dropdown-menu dropdown-secondary">
+                            <div class="dropdown-divider"></div>
+                            @if (User.IsInRole("Admin"))
+                            {
+                                @*<a class="dropdown-item text-danger" asp-controller="Role" asp-action="Index">Role</a>
+                                <a class="dropdown-item text-danger" asp-controller="User" asp-action="Index">User</a>*@
+                                <a class="dropdown-item text-danger" asp-controller="Carbrand" asp-action="Index">Carbrand</a>
+                                <a class="dropdown-item text-danger" asp-controller="Home" asp-action="table">Products</a>
+                                <a class="dropdown-item text-danger" asp-controller="Description" asp-action="Index">Description</a>
+                                <a class="dropdown-item text-danger" asp-controller="Order" asp-action="Index">Order</a>
+                            }
+                            else
+                            {
+                                <a class="dropdown-item text-danger" asp-controller="Order" asp-action="Index">Order</a>
+
+                            }
+                        </div>
+
+                    </li>
+                    <li class="nav-item dropdown">
+                        <a class="nav-link dropdown-toggle text-white " data-toggle="dropdown" role="button" aria-haspopup="true"
+                           aria-expanded="false">
+                            Identity
+                            <span class="sr-only">(current)</span>
+                        </a>
+                        <div class="dropdown-menu dropdown-secondary">
+                            <div class="dropdown-divider"></div>
+                            @if (User.IsInRole("Admin"))
+                            {
+                                <a class="dropdown-item text-danger" asp-controller="Role" asp-action="Index">Role</a>
+                                <a class="dropdown-item text-danger" asp-controller="User" asp-action="Index">User</a>                              
+                            }
+                            else
+                            {
+                                @*<a class="dropdown-item text-danger" asp-controller="Order" asp-action="Index">Order</a>*@
+
+                            }
+                        </div>
+
+                    </li>
+                    @*<li class="nav-item active">
+            <a class="nav-link text-white" asp-controller="Home" asp-action="DashBord">
+                Managent
+                <span class="sr-only">(current)</span>
+            </a>
+        </li>*@
+
+                </ul>
+                <!-- Links -->
+                <ul class="navbar-nav ml-auto">
+                    @if (signInManager.IsSignedIn(User))
+                    {
+                        <li>
+                            <form asp-controller="Account" asp-action="Logout" method="post">
+                                <button type="submit" class="btn btn-link text-danger">Logout</button>
+                            </form>
+                        </li>
+                    }
+                    else
+                    {
+                        <li class="nav-item">
+                            <a class="nav-link text-danger" asp-controller="Account" asp-action="Login">Login</a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link text-danger" asp-controller="Account" asp-action="Register">Register</a>
+                        </li>
+                    }
+                </ul>
+                @*<form class="form-inline">
+                        <div class="md-form my-0">
+                            <input id="myInput" class="form-control" type="text" placeholder="Search..." aria-label="Search">
+                        </div>
+                    </form>*@
+            </div>
+            <!-- Collapsible content -->
+
+        </nav>
+        <!--/.Navbar-->
+    </div>
+
+    <div class="container">
+        <main role="main" class="pb-3">
+            @RenderBody()
+        </main>
+    </div>
+
+    <!-- Footer -->
+    <footer class="page-footer font-small mdb-color lighten-3 pt-4">
+
+        <!-- Footer Elements -->
+        <div class="container">
+
+            <!--Grid row-->
+            <div class="row">
+
+                <!--Grid column-->
+                <div class="col-lg-2 col-md-12 mb-4">
+
+                    <!--Image-->
+                    <div class="view overlay z-depth-1-half">
+                        <img src="~/images/Mercedes-e300.png" class="img-fluid"
+                             alt="">
+                        <a href="">
+                            <div class="mask rgba-white-light"></div>
+                        </a>
+                    </div>
+
+                </div>
+                <!--Grid column-->
+                <!--Grid column-->
+                <div class="col-lg-2 col-md-6 mb-4">
+
+                    <!--Image-->
+                    <div class="view overlay z-depth-1-half">
+                        <img src="~/images/s560-mb.png" class="img-fluid"
+                             alt="">
+                        <a href="">
+                            <div class="mask rgba-white-light"></div>
+                        </a>
+                    </div>
+
+                </div>
+             
+                <div class="col-lg-2 col-md-12 mb-4">
+
+                    <!--Image-->
+                    <div class="view overlay z-depth-1-half">
+                        <img src="~/images/Mercedes-E200-Sport.png" class="img-fluid"
+                             alt="">
+                        <a href="">
+                            <div class="mask rgba-white-light"></div>
+                        </a>
+                    </div>
+
+                </div>
+                <div class="col-lg-2 col-md-6 mb-4">
+
+                    <!--Image-->
+                    <div class="view overlay z-depth-1-half">
+                        <img src="~/images/s650mb.png" class="img-fluid"
+                             alt="">
+                        <a href="">
+                            <div class="mask rgba-white-light"></div>
+                        </a>
+                    </div>
+
+                </div>
+                <!--Grid column-->
+                <!--Grid column-->
+                <div class="col-lg-2 col-md-6 mb-4">
+
+                    <!--Image-->
+                    <div class="view overlay z-depth-1-half">
+                        <img src="~/images/S450-Luxury.png" class="img-fluid"
+                             alt="">
+                        <a href="">
+                            <div class="mask rgba-white-light"></div>
+                        </a>
+                    </div>
+
+                </div>
+                <!--Grid column-->
+                <!--Grid column-->
+                <div class="col-lg-2 col-md-6 mb-4">
+
+                    <!--Image-->
+                    <div class="view overlay z-depth-1-half">
+                        <img src="~/images/glc300-coupe (1).jpg" class="img-fluid"
+                             alt="">
+                        <a href="">
+                            <div class="mask rgba-white-light"></div>
+                        </a>
+                    </div>
+
+                </div>
+                <!--Grid column-->
+
+            </div>
+            <!--Grid row-->
+
+        </div>
+        <!-- Footer Elements -->
+        <!-- Copyright -->
+        <div class="footer-copyright text-center py-3">
+            © 2020 Copyright:
+            <a href="https://mdbootstrap.com/">Xuanc25@gmail.com</a>
+        </div>
+        <!-- Copyright -->
+
+    </footer>
+
+    <script>
+        $(document).ready(function () {
+            $('#no-waves .dropdown').removeClass('waves-effect');
+        });
+    </script>
+
+    @RenderSection("Scripts", required: false)
+</body>
+</html>

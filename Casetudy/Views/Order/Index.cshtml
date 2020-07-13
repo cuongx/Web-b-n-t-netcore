@@ -1,0 +1,99 @@
+﻿@model IEnumerable<Order>;
+@{
+    ViewBag.Title = "Index";
+}
+
+<div class="container-fluid">
+    <div class="card">
+        <div class="card-body">
+            <form class="form-inline">
+                <div class="md-form my-0 ">
+                    <input id="myInput" class="form-control" type="text" placeholder="Search..." aria-label="Search">
+                </div>
+            </form>
+        </div>
+        <h3 class="card-header text-center font-weight-bold text-uppercase py-4">Order</h3>
+        <div class="card-body">
+            <div  class="table-editable">
+                <span class="table-add float-right mb-3 mr-2">
+                    <a asp-controller="Order" asp-action="Create" class="text-success">
+                        <i class="fas fa-plus fa-2x" aria-hidden="true"></i>
+                    </a>
+                </span>
+                <table id="table" class="table table-bordered table-responsive-md table-striped text-center">
+                    <thead>
+                        <tr>
+                            <th>ID</th>
+                            <th>Name</th>
+                            <th>Phone</th>
+                            <th>Carname</th>
+                            <th>Date</th>
+                            <th>City</th>
+                            <th>CarColor</th>
+                            <td>Sort</td>
+                            <th>Action</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        @if (Model != null && Model.Any())
+                        {
+                            @foreach (var role in Model)
+                            {
+
+
+                                <tr>
+                                    <td>@role.OrderId</td>
+                                    <td>@role.OrderName</td>
+                                    <td>@role.Phone</td>
+                                    <td>@role.Carname</td>
+                                    <td>@role.Date</td>
+                                    <td>@role.City</td>
+                                    <td>@role.CarColor</td>
+                                    <td class="pt-3-half">
+                                        <span class="table-up">
+                                            <a href="#!" class="indigo-text">
+                                                <i class="fas fa-long-arrow-alt-up"
+                                                   aria-hidden="true"></i>
+                                            </a>
+                                        </span>
+                                        <span class="table-down">
+                                            <a href="#!" class="indigo-text">
+                                                <i class="fas fa-long-arrow-alt-down"
+                                                   aria-hidden="true"></i>
+                                            </a>
+                                        </span>
+                                    </td>
+                                    <td>
+                                        @if (User.IsInRole("Admin")) {
+                                        <span class="table-remove">
+                                            <a asp-controller="Order" asp-action="Edit" asp-route-id="@role.OrderId" class="btn btn-success">Edit</a>
+                                            <a asp-controller="Order" asp-action="Delete" class="btn btn-danger" asp-route-id="@role.OrderId">Delete</a>
+                                        </span>
+                                        }
+                                    </td>
+                                </tr>
+
+                            }
+                        }
+
+                    </tbody>
+                </table>
+            </div>
+        </div>
+    </div>
+</div>
+
+
+
+@section Scripts{
+    <script>
+        $(document).ready(function () {
+            $("#myInput").on("keyup", function () {
+                var value = $(this).val().toLowerCase();
+                $("#table td").filter(function () {
+                    $(this).toggle($(this).text().toLowerCase().indexOf(value) > -1)
+                });
+            });
+        });
+    </script>
+}

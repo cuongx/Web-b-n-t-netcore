@@ -1,0 +1,256 @@
+﻿ @model List<Employees>;
+@{
+    ViewBag.Title = "Products ";
+    List<Carbrand> carbrands = ViewBag.Category;
+}
+
+
+<div class="container-lg mt-2 ">
+    <div class="row">
+        <div class="col">
+            <nav aria-label="breadcrumb">
+                <ol class="breadcrumb">
+                    <li class="breadcrumb-item"><a href="#">Tất Cả Sản Phẩm</a></li>
+                    <li class="breadcrumb-item active" aria-current="page">Danh Mục Sản Phẩm</li>
+                </ol>
+            </nav>
+        </div>
+    </div>
+</div>
+
+
+<section>
+    <div class="row">
+        <!--Grid column-->
+        <div class="col-lg-3   border p-4 ">
+
+            <!-- Filter panel -->
+            <div class="mb-5">
+                <h5 class="font-weight-bold mb-3 text-warning">Danh Mục Sản Phẩm</h5>
+
+                <div class="divider-small mb-3"></div>
+
+                <ul class="list-unstyled link-black">
+
+                    <li class="card-footer">
+
+                        @if (carbrands != null)
+                        {
+                            foreach (Carbrand carbrand in carbrands)
+                            {
+
+                                <a class="level-top" asp-controller="Home" asp-action="Products" asp-route-id="@carbrand.CarbrandId">
+                                    <i class="fas fa-car text-danger"></i>
+                                    <span class="text-white">@carbrand.CarbrandName</span><br /><hr />
+                                </a>
+
+                            }
+
+                        }
+                    </li>
+                    @*<a class="level-top">
+                        <img src="~/images/lambogini.jpg" alt="Logo" style="width:40px" />
+                        <span class="text-white">Lamborghini</span>
+                    </a>*@
+
+                    @*<li class="card-footer">
+                        <a href="/acura-1" class="level-top">
+                            <img src="~/images/fOR.jpg" alt="Logo" style="width:40px" />
+                            <span class="text-white">Ford </span>
+                        </a>
+                    </li>
+                    <li class="card-footer">
+                        <a href="/acura-1" class="level-top">
+                            <img src="~/images/audi.jpg" alt="Logo" style="width:40px" />
+                            <span class="text-white">Audi</span>
+                        </a>
+                    </li>
+                    <li class="card-footer">
+                        <a href="/acura-1" class="level-top">
+                            <img src="~/images/landrover.jpg" alt="Logo" style="width:40px" />
+                            <span class="text-white">Land Rover</span>
+                        </a>
+                    </li>
+                    <li class="card-footer">
+                        <a href="/acura-17" class="level-top">
+                            <img src="~/images/Lexus.jpg" alt="Logo" style="width:40px" />
+                            <span class="text-white">Lexus</span>
+                        </a>
+                    </li>*@
+                </ul>
+                <hr />
+            </div>
+            <!-- Filter panel -->
+            <!-- Filter panel -->
+            <div class="">
+
+                <h5 class="font-weight-bold text-warning">Hỗ Trợ Trực Tuyến</h5>
+                @*<div class="box-title">
+                    <h2>Hỗ trợ trực tuyến</h2>
+                </div>*@
+
+                <div class="block-content">
+                    <div class="sp_1">
+                        <p> <i class="fas fa-phone-square-alt"></i>Tư vấn bán hàng 1</p>
+                        <p class="text-white">Mr.Tuấn: <span>098.590.8888</span></p>
+                    </div>
+                    <div class="sp_2">
+                        <p>Tư vấn bán hàng 2</p>
+                        <p class="text-white">Mr.Cường: <span>093.564.6666</span></p>
+                    </div>
+                    <div class="sp_mail">
+                        <p>Email liên hệ</p>
+                        <p class="text-white">Xuanc25@gmail.com</p>
+                    </div>
+                </div>
+            </div>
+            <!-- Filter panel -->
+            <!-- Filter panel -->
+            <div class="mb-5">
+
+                <h5 class="font-weight-bold mb-3">Price</h5>
+
+                <div class="divider-small mb-3"></div>
+
+                <form class="range-field">
+                    <input type="range" min="0" max="319" />
+                </form>
+
+                <div class="row justify-content-center">
+
+                    <!-- Grid column -->
+                    <div class="col-md-6 text-left">
+                        <p class="dark-grey-text"><strong id="resellerEarnings">0$</strong></p>
+                    </div>
+                    <!-- Grid column -->
+                    <!-- Grid column -->
+                    <div class="col-md-6 text-right">
+                        <p class="dark-grey-text"><strong id="clientPrice">1000$</strong></p>
+                    </div>
+                    <!-- Grid column -->
+                </div>
+
+            </div>
+            <!-- Filter panel -->
+            <!-- Filter panel -->
+            <div class="link-black">
+
+                <h5 class="font-weight-bold mb-3">Rating</h5>
+
+                <div class="divider-small mb-3"></div>
+
+                <div class="amber-text fa-sm mb-1">
+                    <i class="fas fa-star"></i>
+                    <i class="fas fa-star"></i>
+                    <i class="fas fa-star"></i>
+                    <i class="fas fa-star"></i>
+                    <i class="fas fa-star"></i>
+                    <a href="" class="ml-2 active">4 and more</a>
+                </div>
+
+                <div class="amber-text fa-sm mb-1">
+                    <i class="fas fa-star"></i>
+                    <i class="fas fa-star"></i>
+                    <i class="fas fa-star"></i>
+                    <i class="fas fa-star"></i>
+                    <i class="fas fa-star"></i>
+                    <a href="" class="ml-2">3 - 3,99</a>
+                </div>
+
+                <div class="amber-text fa-sm mb-1">
+                    <i class="fas fa-star"></i>
+                    <i class="fas fa-star"></i>
+                    <i class="fas fa-star"></i>
+                    <i class="fas fa-star"></i>
+                    <i class="fas fa-star"></i>
+                    <a href="" class="ml-2">3.00 and less</a>
+                </div>
+
+
+                <!-- Filter panel -->
+            </div>
+        </div>
+        <!--Grid column-->
+        @foreach (var pb in Model)
+        {
+            var avatarPath = $"/images/{(pb.AvatarPath ?? "FORRD")}";
+    <div class="container col-lg-3 ">
+        <div class="row">
+            <div class="card mx-2" style="width:400px">
+                @*<div class="card-header text-center">
+                    <h2>@Model.Name</h2>
+                </div>*@
+
+                <img class="MyImage" src="@avatarPath" />
+                <div class="card-footer text-center">
+
+                    <a asp-controller="Home" asp-action="Details" asp-route-id="@pb.Id" class="card-text"><h6>@pb.Name</h6></a>
+                    <span class="woocommerce-Price-amount amount text-danger">@pb.Price&nbsp;<span class="woocommerce-Price-currencySymbol">₫</span></span>
+                </div>
+                <div class="card-body text-center"  style="color:#fdd835">
+                    <a>Hộp số:Số tự động</a>
+                    @*<h3 class="font-weight-bolder text-danger">$@employee.Price</h3>*@
+
+                </div>
+
+                @*<h3>Orginame:@description</h3>*@
+                @*<div>*@
+                @*@if (User.IsInRole("Cường"))
+                {*@
+                @*<a asp-controller="Home" asp-action="Edit" asp-route-id="@pb.Id" class="btn btn-danger mx-2">Update</a>
+                <a asp-controller="Home" asp-action="Delete" asp-route-id="@pb.Id" class="btn btn-info">Delete</a>*@
+                @*<a class="btn btn-danger" asp-controller="Home" asp-action="Index">Back</a>
+                        <a class="btn btn-danger" asp-controller="Home" asp-action="BookCar">BookCar</a>
+                    }
+                    else
+                    {
+                        <a class="btn btn-danger" asp-controller="Home" asp-action="Index">Back</a>
+                        <a class="btn btn-danger" asp-controller="Home" asp-action="BookCar">BookCar</a>
+                    }
+
+
+                </div>*@
+
+            </div>
+
+
+        </div>
+    </div>
+
+        @*</div>*@
+
+        }
+    
+            @*<div class="col-4">
+                <div class="product-essential">
+                    <form action="/cart/add" method="post" id="product_addtocart_form">
+                        <div class="row">
+                            <div class="product-img-box col-md-8 col-sm-12 col-sms-12">
+                                <div class="fotorama" data-width="100%" data-nav="thumbs" data-allowfullscreen="native" data-autoplay="2000" data-keyboard="true" data-loop="true">
+                                    <img src="~/images/cd-3.jpg" alt="FORD F150 RAPTOR 2020" class="img-responsive">
+                                    <img src="~/images/cd-4.jpg" alt="FORD F150 RAPTOR 2020" class="img-responsive">
+                                </div>
+                            </div>
+                        </div>
+                    </form>
+                </div>
+            </div>*@
+
+        </div>
+</section>
+
+
+
+
+@section Scripts{
+    <script>
+        $(document).ready(function () {
+            $("#myInput").on("keyup", function () {
+                var value = $(this).val().toLowerCase();
+                $("#search h2").filter(function () {
+                    $(this).toggle($(this).text().toLowerCase().indexOf(value) > -1)
+                });
+            });
+        });
+    </script>
+}

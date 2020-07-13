@@ -1,0 +1,16 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!--
+This file is used by the publish/package process of your Web project. You can customize the behavior of this process
+by editing this MSBuild file. In order to learn more about this please visit https://go.microsoft.com/fwlink/?LinkID=208121. 
+-->
+<Project ToolsVersion="4.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <PropertyGroup>
+    <TimeStampOfAssociatedLegacyPublishXmlFile />
+    <_PublishTargetUrl>D:\Cuongyt</_PublishTargetUrl>
+  </PropertyGroup>
+  <ItemGroup>
+    <DestinationConnectionStrings Include="EmployeesConnection">
+      <Value>workstation id=cuongsport.mssql.somee.com%3bpacket size=4096%3buser id=xuancuong2531_SQLLogin_1%3bpwd=zxsh6ec39m%3bdata source=cuongsport.mssql.somee.com%3bpersist security info=False%3binitial catalog=cuongsport</Value>
+    </DestinationConnectionStrings>
+  </ItemGroup>
+</Project>
