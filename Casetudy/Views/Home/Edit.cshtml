@@ -1,84 +1,154 @@
 ﻿@model HomeEditViewsModel
 
 @{
+    Layout = "~/Views/Shared/_Admin.cshtml";
     ViewBag.Title = "Home Edit ";
     var avatarPath = $"/images/{(Model.AvatarPath ?? "cd-5.jpg")}";
     var carbrand = ViewBag.Carbrands as List<Carbrand>;
     var description = ViewBag.Descriptions as List<Description>;
+    System.DateTime moment = new System.DateTime();
+    int years = moment.Year;
+    var gallerys = ViewBag.Gallerys as List<Casetudy.Models.ListAvatar.Gallery>;
 }
 
-
+  <style>
+      .gallerys{
+          width:150px;
+          height:80px
+      }
+  </style>
     <form enctype="multipart/form-data" asp-controller="Home" asp-action="Edit" method="post">
         <div asp-validation-summary="All" class="text-danger"></div>
-        <input hidden asp-for="Id" />
-        <div class="form-group row">
-            <label class="col-sm-2 col-form-label" asp-for="Name"></label>
-            <div class="col-sm-10">
-                <input class="form-control" asp-for="Name" placeholder="Name">
-                <span class="text-danger" asp-validation-for="Name"></span>
+        <input hidden asp-for="EmployeeId" />
+        <input hidden asp-for="AvatarPath" value="@Model.AvatarPath" />  
+        <input hidden asp-for="Gallery" value="@Model.Gallery" />
+        <input hidden asp-for="Avatar" value="@Model.AvatarPath" />
+        <div class="row form-group">
+            <div class="col-md-3">
             </div>
-        </div>
-        <div class="form-group row">
-            <label class="col-sm-2 col-form-label" asp-for="Price"></label>
-            <div class="col-sm-10">
-                <input class="form-control" asp-for="Price" placeholder="Price">
-                <span class="text-danger" asp-validation-for="Price"></span>
-            </div>
-        </div>
-        <div class="form-group row">
-            <label class="col-sm-2 col-form-label" asp-for="CarbrandId"></label>
-            <select class="col-sm-10" asp-for="CarbrandId">
-                <option value="">Select a CarbranId</option>
-                @if (carbrand != null)
+            <div class="col-md-9">
+                @foreach (var iteam in gallerys)
                 {
-                    foreach (var dept in carbrand)
-
+                    <img src="@iteam.Url"  class="gallerys"  asp-append-version="true" />
+                   
+                }
+            </div>
+             </div>
+            <div class="form-group row">
+                <label class="col-sm-2 col-form-label text-white" asp-for="Name"></label>
+                <div class="col-sm-10">
+                    <input class="form-control" asp-for="Name" placeholder="Name">
+                    <span class="text-danger" asp-validation-for="Name"></span>
+                </div>
+            </div>
+            <div class="form-group row">
+                <label class="col-sm-2 col-form-label text-white" asp-for="Price"></label>
+                <div class="col-sm-10">
+                    <input class="form-control" asp-for="Price" placeholder="Price">
+                    <span class="text-danger" asp-validation-for="Price"></span>
+                </div>
+            </div>
+            <div class="form-group row">
+                <label class="col-sm-2 col-form-label text-white" asp-for="CarbrandId"></label>
+                <select class="col-sm-10" asp-for="CarbrandId">
+                    <option value="">Select a CarbranId</option>
+                    @if (carbrand != null)
                     {
+                        foreach (var dept in carbrand)
 
-                        <option value="@dept.CarbrandId" selected="@(dept.CarbrandId == @Model.CarbrandId)">@dept.CarbrandName</option>
+                        {
+
+                            <option value="@dept.CarbrandId" selected="@(dept.CarbrandId == @Model.CarbrandId)">@dept.CarbrandName</option>
+                        }
+                    }
+                </select>
+            </div>
+
+            <div class="form-group row">
+
+                @if (description != null)
+                {
+
+                    @foreach (var emp in description)
+                    {
+                        <label class=" col-sm-2 form-check-label text-white">@emp.OriginName</label>
+                        <div class="col-sm-10">
+                            <div class="form-check">
+                                <input name="Descriptions" value="@emp.DescriptionId" type="checkbox" class="form-check-input"
+                                       checked="@(Model.SelectDescriptions.Where
+                                  (l => l.DescriptionId == emp.DescriptionId).ToList().Count() >0)" />
+                                @*<label class="form-check-label">@dept.OriginName</label>*@
+                            </div>
+
+                        </div>
                     }
                 }
-            </select>
-        </div>
-
-        <div class="form-group row">
-
-            @if (description !=null)
-            {
-
-            @foreach (var emp in description)
-                {
-                    <label class=" col-sm-2 form-check-label">@emp.OriginName</label>
-                    <div class="col-sm-10">
-                        <div class="form-check">
-                           <input name="Descriptions" value="@emp.DescriptionId" type="checkbox" class="form-check-input"
-                                 checked="@(Model.SelectDescriptions.Where
-                                  (l => l.DescriptionId == emp.DescriptionId).ToList().Count() >0)"/>
-                            @*<label class="form-check-label">@dept.OriginName</label>*@
-                        </div>
-
-                    </div>
-               }
-            }
-        </div>
-
-        <div class="form-group row">
-            <label class="col-sm-2 col-form-label" asp-for="Avatar"></label>
-            <div class="custom-file col-sm-10">
-                <input class="custom-file-input" value="@Model.Avatar" asp-for="Avatar">
-                <label class="custom-file-label" id="avatar" for="custom-file">@Model.AvatarPath</label>
             </div>
-        </div>
-        <div class="row col-4 offset-4 justify-content-center">
-            <img src="@avatarPath" class="MyImage" asp-append-version="true" />
-        </div>
-        @*<div asp-validation-summary="All"></div>*@
-        <div class="form-group row">
-            <div class="col-sm-12">
-                <button type="submit" class="btn btn-danger mx-2">Update</button>
-                <a class="btn btn-primary mx-2" asp-controller="Home" asp-action="Index">Back</a>
+            <div class="form-group row">
+                <label class="col-sm-2 col-form-label text-white" asp-for="Yeard"></label>
+                <select class="col-sm-10" asp-for="Yeard">
+                    <option value="">Select Years</option>
+                    @for (years = 1990; years <= 2020; years++)
+                    {
+
+                        <option value="@years">@years.ToString()</option>
+                    }
+
+                </select>
+                <span class="text-danger" asp-validation-for="Yeard"></span>
             </div>
-        </div>
+            <div class="form-group row">
+                <label class="col-sm-2 col-form-label text-white" asp-for="Color"></label>
+                <select class="col-sm-10" asp-for="Color" placeholder="Color">
+                    <option value="">Select Color</option>
+                    <option value="Red">Red</option>
+                    <option value="Black">Black</option>
+                    <option value="Blue">Blue</option>
+                    <option value="White">White</option>
+                </select>
+                <span class="text-danger" asp-validation-for="Color"></span>
+            </div>
+            <div class="form-group row">
+                <label class="col-sm-2 col-form-label text-white" asp-for="Register">Carbrand</label>
+                <select class="col-sm-10 " asp-for="Register">
+                    <option value="">Select Register</option>
+                    @for (years = 1990; years <= 2020; years++)
+                    {
+
+                        <option value="@years">@years.ToString()</option>
+                    }
+
+                </select>
+                <span class="text-danger" asp-validation-for="Register"></span>
+            </div>
+            <div class="form-group row">
+                <label class="col-sm-2 col-form-label text-white" asp-for="Avatar"></label>
+                <div class="custom-file col-sm-10">
+                    <input class="custom-file-input" asp-for="Avatar">
+                    <label class="custom-file-label" id="avatar" for="custom-file">@ViewBag.Avatar</label>
+                </div>
+            </div>
+            <div class="form-group row">
+                <label asp-for="GalleryFiles" class="col-sm-2 col-form-label text-white"></label>
+                <div class="custom-file col-sm-10">
+                    <input asp-for="GalleryFiles" class="custom-file-input" id="customFile">
+                    <label class="custom-file-label" for="customFile">Choose file</label>
+                </div>
+                <span asp-validation-for="GalleryFiles" class="text-danger"></span>
+            </div>
+            <div class="row col-4 offset-4 justify-content-center">
+                <img src="@avatarPath" class="MyImage" asp-append-version="true" />
+            </div>
+
+
+
+            @*<div asp-validation-summary="All"></div>*@
+            <div class="form-group row">
+                <div class="col-sm-12">
+                    <button type="submit" class="btn btn-danger mx-2">Update</button>
+                    <a class="btn btn-primary mx-2" asp-controller="Home" asp-action="Index">Back</a>
+                </div>
+            </div>
     </form>
 
 

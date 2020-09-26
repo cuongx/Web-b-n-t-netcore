@@ -1,9 +1,17 @@
-﻿@model IEnumerable<Employees>;
+﻿@inject AppDbContext context;
+@model IList<ViewModel>;
 
 @{
+    Layout = "~/Views/Shared/_Admin.cshtml";
     ViewBag.Title = "Product Views Model";
 }
 
+<style>
+    .cardid{
+       width:70px;
+       height:50px;
+    }
+</style>
 
 <div class="card">
     <h3 class="card-header text-center font-weight-bold text-uppercase py-2">Products</h3>
@@ -21,56 +29,107 @@
                     <i class="fas fa-plus fa-2x" aria-hidden="true"></i>
                 </a>
             </span>
-            <table id="table" class="table table-bordered table-responsive-md table-striped text-center">
-                <thead>
-                    <tr>
-                        <th>ID</th>
-                        <th>Name</th>
-                        <th>Price</th>
-                        <th>Sort</th>
-                        <th>Avatar</th>
-                        <th>Action</th>
-                    </tr>
-                </thead>
-                <tbody>
-                    @if (Model != null && Model.Any())
-                    {
-                        @foreach (var role in Model)
-                        {
-                            var avatarPath = $"/images/{role.AvatarPath ?? "FORRD"}";
-                            <tr>
-                                <td>@role.Id</td>
-                                <td>@role.Name</td>
-                                <td>@role.Price</td>
-                                <td class="pt-3-half">
-                                    <span class="table-up">
-                                        <a href="#!" class="indigo-text">
-                                            <i class="fas fa-long-arrow-alt-up"
-                                               aria-hidden="true"></i>
-                                        </a>
-                                    </span>
-                                    <span class="table-down">
-                                        <a href="#!" class="indigo-text">
-                                            <i class="fas fa-long-arrow-alt-down"
-                                               aria-hidden="true"></i>
-                                        </a>
-                                    </span>
-                                </td>
-                                <td>
-                                    <img src="@avatarPath" class="card-img-top" style="width:100px" height="50" asp-append-version="true" />
-                                </td>
-                                <td>
-                                    <span class="table-remove">
-                                        <a asp-controller="Home" asp-action="Edit" asp-route-id="@role.Id" class="btn btn-success">Edit</a>
-                                        <a asp-controller="Home" asp-action="Delete" class="btn btn-danger" asp-route-id="@role.Id">Delete</a>
-                                    </span>
-                                </td>
-                            </tr>
-                        }
-                    }
+            <div style="overflow-x:auto;">
+                <form asp-controller="Home" asp-action="Delete" method="POST">
+                    <div>
+                        <button class="btn btn-danger ml-4 mb-2" value="delete" type="submit">Delete</button>
+                    </div>
 
-                </tbody>
-            </table>
+                    <table id="table" class="table table-bordered table-responsive-md table-striped text-center">
+                        <thead>
+                            <tr>
+                                <th>
+                                    <input type="checkbox" id="selectAll" /> Select All
+                                </th>
+                                <th>ID</th>
+                                <th>Name</th>
+                                <th>Price</th>
+                                <th>Avatar</th>
+                                <th>Cabrand</th>
+                                <th>Gallerys</th>
+                                <th>Des</th>
+                                <th>Action</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            @if (Model != null && Model.Any())
+                            {
+                                @for (int i = 0; i < Model.Count(); i++)
+                                {
+                                    var avatarPath = $"/images/{Model[i].AvatarPath ?? "FORRD"}";
+                                    <tr>
+                                        <td>
+                                            <input type="hidden" asp-for="@Model[i].Emps.Value" />
+                                            <input asp-for="@Model[i].Emps.Selected" />
+                                            <input type="hidden" asp-for="@Model[i].Id" />
+                                        </td>
+                                        <td>
+                                            <label asp-for="@Model[i].Id">@Model[i].Id</label>
+                                        </td>
+                                        <td>
+                                            <label asp-for="@Model[i].Name">@Model[i].Name</label>
+                                        </td>
+                                        <td>
+                                            <label asp-for="@Model[i].Price">@Model[i].Price</label>
+                                        </td>
+                                        <td>
+                                            <img src="@avatarPath" class="card-img-top" style="width:100px" height="50" asp-append-version="true" />
+                                        </td>
+                                        <td>
+                                            @{ 
+                                                var cabrand = (from c in context.Carbrands where c.CarbrandId == Model[i].CarbrandId select c).ToList();
+                                            }
+                                            @foreach(var car in cabrand)
+                                            {
+                                                <label>@car.CarbrandName</label>
+                                            }
+                                        </td>
+                                        <td>
+                                            @{
+
+                                                var images = (from g in context.Gallerys
+                                                              where g.EmployeeId == Model[i].Id
+                                                              select new Casetudy.Models.ListAvatar.GalleryModel()
+                                                              {
+                                                                  Id = g.Id,
+                                                                  Name = g.Name,
+                                                                  Url = g.Url
+                                                              }).ToList();
+                                            }
+                                            @foreach (var iteam in images)
+                                            {
+                                                <a href="@iteam.Url" data-toggle="lightbox" data-gallery="@iteam.Id" data-title="@iteam.Name">
+                                                    <img src="@iteam.Url" class="cardid" @*style="width:70px" height="50"*@ />
+                                                </a>
+                                            }
+                                            </td>
+                                        <td>
+                                            @{
+                                                var des = (from e in context.Descriptions
+                                                           join ed in context.EmployeeDescriptions on e.DescriptionId equals ed.DescriptionId
+                                                           where ed.EmployeeId == Model[i].Id
+                                                           select e).ToList();
+                                            }
+                                            @foreach (var dept in des)
+                                            {
+                                                <label>@dept.OriginName</label>
+                                            }
+
+                                        </td>
+                                        <td>                                            
+                                            <span class="table-remove">
+                                                <a asp-controller="Home" asp-action="Edit" asp-route-id="@Model[i].Id" class="btn btn-success">Edit</a>
+                                                <a asp-controller="Home" asp-action="Details" class="btn btn-danger" asp-route-id="@Model[i].Id">Details</a>
+                                            </span>
+                                        </td>
+                                    </tr>
+                                }
+                            }
+
+                        </tbody>
+                    </table>
+                </form>
+            </div>
         </div>
     </div>
 </div>
@@ -78,14 +137,16 @@
 @section Scripts{
 
     <script>
-            $(document).ready(function () {
-                $("#myInput").on("keyup", function () {
-                    var value = $(this).val().toLowerCase();
-                    $("#table td").filter(function () {
-                        $(this).toggle($(this).text().toLowerCase().indexOf(value) > -1)
-                    });
-                });
+        $(function () {
+            $("#selectAll").click(function () {
+                $("input[type = checkbox]").prop('checked', $(this).prop('checked'));
             });
+            $("input[type =checkbox]").click(function () {
+                if (!$(this).prop("checked")) {
+                    $("selectAll").prop("checked", false);
+                }
+            });
+        });
     </script>
 }
 

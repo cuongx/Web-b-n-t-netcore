@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
 using Casetudy.Models;
+using Casetudy.Models.Gallerys;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
@@ -38,12 +39,16 @@ namespace Casetudy
                     .Build();
                 option.Filters.Add(new AuthorizeFilter(policy));
             });
+            services.AddScoped<IGallerysRepository, SqlGallerysRepository>();
             services.AddScoped<IOrderRepository,SqlOrderRepository>();
             services.AddScoped<ICarbrandRepository,CarbandRepository>();
             services.AddScoped<IEmployeesRepository,SqlEmployeesRespository>();
             services.AddScoped<IDescriptionRespository,SqlDescriptionRespository>();
             services.AddDbContext<AppDbContext>(option => option.UseSqlServer(config.GetConnectionString("EmployeesConnection")));
             services.AddIdentity<ApplicationUser, IdentityRole>().AddEntityFrameworkStores<AppDbContext>();
+            //services.AddSession(options => {
+            //    options.IdleTimeout = TimeSpan.FromMinutes(30);
+            //});
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
@@ -55,12 +60,12 @@ namespace Casetudy
             }
             else
             {
-                app.UseStatusCodePagesWithRedirects("/Error/{0}");
-                app.UseStatusCodePagesWithReExecute("/Error/{0}");
-                app.UseExceptionHandler("/Home/Error");            
+                //app.UseStatusCodePagesWithRedirects("/Error/{0}");
+                //app.UseStatusCodePagesWithReExecute("/Error/{0}");
+                //app.UseExceptionHandler("/Home/Error");
                 app.UseHsts();
             }
-        
+            //app.UseSession();
             app.UseStaticFiles();
         
 

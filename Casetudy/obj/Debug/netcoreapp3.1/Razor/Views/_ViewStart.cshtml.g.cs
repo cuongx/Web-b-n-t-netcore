@@ -47,8 +47,15 @@ using Casetudy.Views.ViewsModel.Order;
 #line default
 #line hidden
 #nullable disable
+#nullable restore
+#line 6 "D:\APS NETCORE\Casetudy\Views\_ViewImports.cshtml"
+using Newtonsoft.Json;
+
+#line default
+#line hidden
+#nullable disable
     [global::Microsoft.AspNetCore.Razor.Hosting.RazorSourceChecksumAttribute(@"SHA1", @"bf8e89adabe716495b12a27b3fedaa67f056bbc4", @"/Views/_ViewStart.cshtml")]
-    [global::Microsoft.AspNetCore.Razor.Hosting.RazorSourceChecksumAttribute(@"SHA1", @"bc9cbadba6c8992287d4faf64a98beb719f857d3", @"/Views/_ViewImports.cshtml")]
+    [global::Microsoft.AspNetCore.Razor.Hosting.RazorSourceChecksumAttribute(@"SHA1", @"908a7511b1c98c39fcd69dfdd59845ce4dfaaba7", @"/Views/_ViewImports.cshtml")]
     public class Views__ViewStart : global::Microsoft.AspNetCore.Mvc.Razor.RazorPage<dynamic>
     {
         #pragma warning disable 1998

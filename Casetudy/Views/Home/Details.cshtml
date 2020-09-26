@@ -1,12 +1,15 @@
 ﻿@inject SignInManager<ApplicationUser> signInManager
+@inject AppDbContext context;
 @model EmployeeDetailsViewsModel
 @{
     ViewBag.Title = "Details ";
     var avatarPath = $"/images/{(Model.AvartarPath ?? "FORRD")}";
     List<Carbrand> carbrands = ViewBag.Category;
 
+    IEnumerable<Employees> product = ViewBag.Products;
     var description = Model.Descriptions != null ?
-       string.Join(",", Model.Descriptions.Select(d => d.OriginName)) : string.Empty;
+
+string.Join(",", Model.Descriptions.Select(d => d.OriginName)) : string.Empty;
 
 }
 
@@ -24,10 +27,10 @@
 </div>
 
 
-<section>
+<section class="container-fluid">
     <div class="row">
         <!--Grid column-->
-        <div class="col-lg-5  border p-4 ">
+        <div class="col-lg-3  border p-4 ">
 
             <!-- Filter panel -->
             <div class="mb-5">
@@ -43,51 +46,48 @@
                         {
                             foreach (Carbrand carbrand in carbrands)
                             {
-                                
-                                    <a class="level-top" asp-controller="Home" asp-action="Products" asp-route-id="@carbrand.CarbrandId">
-                                        <i class="fas fa-car text-danger"></i>
-                                        <span class="text-white">@carbrand.CarbrandName</span><br /><hr />
-                                    </a>
-                                                                
-                                
+
+                        <a class="level-top" asp-controller="Home" asp-action="Products" asp-route-id="@carbrand.CarbrandId">
+                            @*<i class="fas fa-car text-danger"></i>*@
+                            <img src="~/icon/@carbrand.AvatarPath" alt="Logo" style="width:40px" />
+                            <span class="text-primary font-weight-bold">@carbrand.CarbrandName</span><br /><hr />
+                        </a>
+
+
                             }
 
                         }
 
-
-
-
-
                     </li>
                     @*<a class="level-top">
-                            <img src="~/images/lambogini.jpg" alt="Logo" style="width:40px" />
-                            <span class="text-white">Lamborghini</span>
-                        </a>*@
+                        <img src="~/images/lambogini.jpg" alt="Logo" style="width:40px" />
+                        <span class="text-white">Lamborghini</span>
+                    </a>*@
 
                     @*<li class="card-footer">
-                            <a href="/acura-1" class="level-top">
-                                <img src="~/images/fOR.jpg" alt="Logo" style="width:40px" />
-                                <span class="text-white">Ford </span>
-                            </a>
-                        </li>
-                        <li class="card-footer">
-                            <a href="/acura-1" class="level-top">
-                                <img src="~/images/audi.jpg" alt="Logo" style="width:40px" />
-                                <span class="text-white">Audi</span>
-                            </a>
-                        </li>
-                        <li class="card-footer">
-                            <a href="/acura-1" class="level-top">
-                                <img src="~/images/landrover.jpg" alt="Logo" style="width:40px" />
-                                <span class="text-white">Land Rover</span>
-                            </a>
-                        </li>
-                        <li class="card-footer">
-                            <a href="/acura-17" class="level-top">
-                                <img src="~/images/Lexus.jpg" alt="Logo" style="width:40px" />
-                                <span class="text-white">Lexus</span>
-                            </a>
-                        </li>*@
+                        <a href="/acura-1" class="level-top">
+                            <img src="~/images/fOR.jpg" alt="Logo" style="width:40px" />
+                            <span class="text-white">Ford </span>
+                        </a>
+                    </li>
+                    <li class="card-footer">
+                        <a href="/acura-1" class="level-top">
+                            <img src="~/images/audi.jpg" alt="Logo" style="width:40px" />
+                            <span class="text-white">Audi</span>
+                        </a>
+                    </li>
+                    <li class="card-footer">
+                        <a href="/acura-1" class="level-top">
+                            <img src="~/images/landrover.jpg" alt="Logo" style="width:40px" />
+                            <span class="text-white">Land Rover</span>
+                        </a>
+                    </li>
+                    <li class="card-footer">
+                        <a href="/acura-17" class="level-top">
+                            <img src="~/images/Lexus.jpg" alt="Logo" style="width:40px" />
+                            <span class="text-white">Lexus</span>
+                        </a>
+                    </li>*@
                 </ul>
                 <hr />
             </div>
@@ -97,8 +97,8 @@
 
                 <h5 class="font-weight-bold text-warning">Hỗ Trợ Trực Tuyến</h5>
                 @*<div class="box-title">
-                        <h2>Hỗ trợ trực tuyến</h2>
-                    </div>*@
+                    <h2>Hỗ trợ trực tuyến</h2>
+                </div>*@
 
                 <div class="block-content">
                     <div class="sp_1">
@@ -177,47 +177,109 @@
                     <a href="" class="ml-2">3.00 and less</a>
                 </div>
 
-
-                <!-- Filter panel -->
             </div>
         </div>
-        <!--Grid column-->
-
-        <div class="container col-lg-5 mt-2">
+ 
+        @*<div class="container col-lg-5 mt-2">
             <div class="row">
                 <div class="card mx-2" style="width:400px">
-                    @*<div class="card-header text-center">
-                            <h2>@Model.Name</h2>
-                        </div>*@
 
                     <img class="MyImage" src="@avatarPath" />
                     <div class="card-body text-center">
-                        @*<h4 class="card-title">Id:@Model.Id</h4>*@
 
-                        @*<h2 class="card-text">Brand:@Model.CarbrandName</h2>
-                            <h2 class="card-text">$@Model.Price</h2>*@
-                        @*<h3>Orginame:@description</h3>*@
                         <div>
-                           
-                                @*<a asp-controller="Home" asp-action="Edit" asp-route-id="@Model.Id" class="btn btn-danger mx-2">Update</a>
-                                 <a asp-controller="Home" asp-action="Delete" asp-route-id="@Model.Id" class="btn btn-info">Delete</a>*@
-                                @*<a class="btn btn-danger" asp-controller="Home" asp-action="Index">Back</a>*@
-                            
-                                    <a class="btn btn-danger" asp-controller="Order" asp-action="Create">BookCar</a>                                                            
-                                    <a class="btn btn-danger" asp-controller="Home" asp-action="Index">Back</a>
-                            
-                          
+
+                            <a class="btn btn-danger" asp-controller="Order" asp-action="Create">BookCar</a>
+                            <a class="btn btn-danger" asp-controller="Home" asp-action="Index">Back</a>
+
                         </div>
 
                     </div>
                 </div>
+            </div>*@
+    <div class="container col-lg-7 mt-2">
+        <div id="carouselExampleIndicators" class="carousel slide" data-ride="carousel">
+            <ol class="carousel-indicators">
+                @for (int i = 0; i < Model.Gallery.Count(); i++)
+                {
+                    <li data-target="#carouselExampleIndicators" data-slide-to="@i" class="@(i==0 ? "active" : "") "></li>
+
+                }
+
+            </ol>
+            <div class="carousel-inner">
+
+                @for (int i = 0; i < Model.Gallery.Count(); i++)
+                {
+                    <div class="@(i==0 ? "carousel-item active" : "carousel-item")">
+                        <img class="d-block w-100" src="@Model.Gallery[i].Url" style="width:auto" height="325px" alt="@Model.Gallery[i].Name">
+                    </div>
+                }
+            </div>
+            <a class="carousel-control-prev" href="#carouselExampleIndicators" role="button" data-slide="prev">
+                <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+                <span class="sr-only">Previous</span>
+            </a>
+            <a class="carousel-control-next" href="#carouselExampleIndicators" role="button" data-slide="next">
+                <span class="carousel-control-next-icon" aria-hidden="true"></span>
+                <span class="sr-only">Next</span>
+            </a>
+        </div>
+        <div class="card-body text-center">
+
+            <div>
+
+                <a class="btn btn-danger" asp-controller="Order" asp-action="Create">BookCar</a>
+                <a class="btn btn-danger" asp-controller="Home" asp-action="Index">Back</a>
+
             </div>
 
         </div>
+        <section>
+            <hr class="mt-3">
+            <div class="text-center">
+                <h4 class="font-weight-bold mt-4 dark-grey-text "><strong class="font-weight-bold">Sản Phẩm Liên Quan</strong></h4>
+            </div>
+          
+            <hr class="mb-1">
+
+            <!-- Grid row -->
+            <div class="row border">
+                @if (product != null && product.Any())
+                {
+                    foreach (var iteam in product)
+                    {
+                        //var avatar = $"/images/{(iteam.AvatarPath ?? "FORRD")}";
+                        <div class="col-md-3 visible" style="color:#fdd835; max-width:50%">
+                            <div class="card my-4 text-center">
+                                @{
+                                    var image = (from e in context.Employees where e.AvatarPath == iteam.AvatarPath select e).ToList();
+                                }
+                                <img src="~/images/@image[0].AvatarPath" alt="@iteam.AvatarPath" class="MyImage" asp-append-version="true" />
+                                <div id="search" class="card-footer">
+
+                                    <a asp-controller="Home" asp-action="Details" asp-route-id="@iteam.Id" class="card-text"><h6 class="font-weight-bold">@iteam.Name</h6></a>
+                                    <span class="woocommerce-Price-amount amount text-danger">@iteam.Price&nbsp;<span class="woocommerce-Price-currencySymbol">₫</span></span>
+                                </div>
+                                <div class="card-body">
+                                    <a>Hộp số:Số tự động</a>
+
+                                </div>
+
+
+                            </div>
+
+                        </div>
+                    }
+                }
+            </div>
+
+        </section>
+    </div>
 
         <div class="col-lg-2 mt-2">
             <table id="productinfotable" class="table table-striped table-hover">
-                <thead style="background-color:#D61F2F;">
+                <thead style="background-color:#f00;">
                     <tr>
                         <th colspan="2" style="color:#fff;">
                             <h1 style="font-size:16px;color:#fff;margin:0 15px;">@Model.Name</h1>
@@ -231,10 +293,10 @@
                         <th colspan="2">
                             <div class="woocommerce-product-details__short-description">
                                 <p>
-                                    Tình trạng: Đã qua sử dụng <br>
-                                    Xuất xứ: Nhập khẩu <br>
-                                    Hộp số: Số tự động <br>
-                                    <font color="#228B22">Mua xe trả góp chỉ từ <b>900 triệu</b></font>
+                                    Tình trạng: Đã qua sử dụng<br><hr />
+                                    Xuất xứ: Nhập khẩu <br><hr />
+                                    Hộp số: Số tự động <br><hr />
+                                    <font color="#ff9f43">Mua xe trả góp chỉ từ <b>900 triệu</b></font>
                                 </p>
                             </div>
                         </th>
@@ -247,9 +309,14 @@
                             @Model.Price:VNĐ
                         </td>
                     </tr>
-
-
-
+                    <tr>
+                        <th>
+                            Quốc gia sản xuất
+                        </th>
+                        <td>
+                            @description
+                        </td>
+                    </tr>
                     <tr>
                         <th>Nhãn hiệu</th>
                         <td>
@@ -259,19 +326,19 @@
                     <tr>
                         <th>Năm sản xuất</th>
                         <td>
-                            <p>2010</p>
+                            <p>@Model.Yeard</p>
                         </td>
                     </tr>
                     <tr>
                         <th>Màu xe</th>
                         <td>
-                            <p>Tùy Chọn</p>
+                            <p>@Model.Color</p>
                         </td>
                     </tr>
                     <tr>
                         <th>Đăng ký lần đầu</th>
                         <td>
-                            <p>2011</p>
+                            <p>@Model.Register</p>
                         </td>
                     </tr>
 
@@ -279,23 +346,24 @@
 
             </table>
         </div>
-        @*<div class="col-4">
-                <div class="product-essential">
-                    <form action="/cart/add" method="post" id="product_addtocart_form">
-                        <div class="row">
-                            <div class="product-img-box col-md-8 col-sm-12 col-sms-12">
-                                <div class="fotorama" data-width="100%" data-nav="thumbs" data-allowfullscreen="native" data-autoplay="2000" data-keyboard="true" data-loop="true">
-                                    <img src="~/images/cd-3.jpg" alt="FORD F150 RAPTOR 2020" class="img-responsive">
-                                    <img src="~/images/cd-4.jpg" alt="FORD F150 RAPTOR 2020" class="img-responsive">
-                                </div>
-                            </div>
-                        </div>
-                    </form>
-                </div>
-            </div>*@
 
     </div>
-</section>
+    @*<div class="col-4">
+            <div class="product-essential">
+                <form action="/cart/add" method="post" id="product_addtocart_form">
+                    <div class="row">
+                        <div class="product-img-box col-md-8 col-sm-12 col-sms-12">
+                            <div class="fotorama" data-width="100%" data-nav="thumbs" data-allowfullscreen="native" data-autoplay="2000" data-keyboard="true" data-loop="true">
+                                <img src="~/images/cd-3.jpg" alt="FORD F150 RAPTOR 2020" class="img-responsive">
+                                <img src="~/images/cd-4.jpg" alt="FORD F150 RAPTOR 2020" class="img-responsive">
+                            </div>
+                        </div>
+                    </div>
+                </form>
+            </div>
+        </div>*@
 
+
+</section>
 
 

@@ -1,4 +1,4 @@
-﻿@model SearchViewsModels
+﻿@model List<SearchEmployeeViewsModel>
 @{
     ViewBag.Title = "Search";
     var category = ViewBag.Employees as List<Employees>;
@@ -7,16 +7,12 @@
 
 <div class="container">
     <div>
-        <form class="form-inline md-form mr-auto mb-4" asp-controller="Home" asp-action="Search" asp-route-id="@Model.SearchKey" method="post">
+        @*<form class="form-inline md-form mr-auto mb-4" asp-controller="Home" asp-action="Search" asp-route-id="@Model.SearchKey" method="post">
             <input class="form-control form-control-sm ml-3 w-75 text-white" asp-for="SearchKey" type="text" placeholder="Search" aria-label="Search">
             <button class="btn btn-outline-warning btn-rounded btn-sm my-0" type="submit">Search</button>
-        </form>
-        @*<form class="form-inline active-cyan-3 active-cyan-4" asp-controller="Home" asp-action="Search" asp-route-id="@Model.SearchKey" method="post">
-            <button type="submit" class="fas fa-search bg-danger" aria-hidden="true"></button>
-            <input class="form-control form-control-sm ml-3 w-75" type="text" asp-for="SearchKey" value="@Model.SearchKey" placeholder="Search" aria-label="Search">
-        </form>*@
+        </form>*@  
         <div class="row justify-content-center mt-3">
-            @foreach (var employee in Model.Employees)
+            @foreach (var employee in Model)
             {
                 var avatarPath = $"/images/{employee.AvatarPath ?? "FORRD"}";
 
@@ -38,18 +34,18 @@
                             </div>
 
                             @*<div class="card-body text-center">
-                            @if (User.IsInRole("Cường"))
-                            {
-                                <a asp-controller="Home" asp-action="Edit" asp-route-id="@employee.Id" class="btn btn-warning">Edit</a>
-                                <a asp-controller="Home" asp-action="Details" asp-route-id="@employee.Id" class="btn btn-danger">Delete</a>
-                                <a asp-controller="Home" asp-action="Details" asp-route-id="@employee.Id" class="btn btn-primary">View</a>
-                            }
-                            else
-                            {
-                                <a asp-controller="Home" asp-action="Details" asp-route-id="@employee.Id" class="btn btn-primary">View</a>
-                                <a asp-controller="Order" asp-action="Create" asp-route-id="@employee.Id" class="btn btn-primary">Car</a>
-                            }
-                            </div>*@
+                                @if (User.IsInRole("Cường"))
+                                {
+                                    <a asp-controller="Home" asp-action="Edit" asp-route-id="@employee.Id" class="btn btn-warning">Edit</a>
+                                    <a asp-controller="Home" asp-action="Details" asp-route-id="@employee.Id" class="btn btn-danger">Delete</a>
+                                    <a asp-controller="Home" asp-action="Details" asp-route-id="@employee.Id" class="btn btn-primary">View</a>
+                                }
+                                else
+                                {
+                                    <a asp-controller="Home" asp-action="Details" asp-route-id="@employee.Id" class="btn btn-primary">View</a>
+                                    <a asp-controller="Order" asp-action="Create" asp-route-id="@employee.Id" class="btn btn-primary">Car</a>
+                                }
+                                </div>*@
                         </div>
                         <!-- Card -->
                     </div>
@@ -60,15 +56,31 @@
     </div>
 </div>
 
-@section Scripts{
-    <script>
-        $(document).ready(function () {
-            $("#myInput").on("keyup", function () {
-                var value = $(this).val().toLowerCase();
-                $("#search h2").filter(function () {
-                    $(this).toggle($(this).text().toLowerCase().indexOf(value) > -1)
+@if (ViewBag.Products != null)
+{
+    @*<span class="alert alert-danger">@ViewBag.Products</span>*@
+    <div id="notfound">
+        <div class="notfound">
+            <div class="notfound-404">
+                <h1>Oops!</h1>
+            </div>
+            <h2>@ViewBag.Products</h2>
+            <p>The page you are looking for might have been removed had its name changed or is temporarily unavailable.</p>
+            <a asp-controller="Home" asp-action="Index">Go To Homepage</a>
+        </div>
+    </div>
+
+}
+
+@*@section Scripts{
+        <script>
+            $(document).ready(function () {
+                $("#myInput").on("keyup", function () {
+                    var value = $(this).val().toLowerCase();
+                    $("#search h2").filter(function () {
+                        $(this).toggle($(this).text().toLowerCase().indexOf(value) > -1)
+                    });
                 });
             });
-        });
-    </script>
-}
+        </script>
+    }*@

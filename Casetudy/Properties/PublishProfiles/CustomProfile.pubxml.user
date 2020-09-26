@@ -6,16 +6,6 @@ by editing this MSBuild file. In order to learn more about this please visit htt
 <Project ToolsVersion="4.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
   <PropertyGroup>
     <TimeStampOfAssociatedLegacyPublishXmlFile />
-    <_PublishTargetUrl>D:\WebSite</_PublishTargetUrl>
+    <_PublishTargetUrl>D:\B1</_PublishTargetUrl>
   </PropertyGroup>
-  <ItemGroup>
-    <DestinationConnectionStrings Include="EmployeesConnection">
-      <Value>workstation id=cuongsport.mssql.somee.com%3bpacket size=4096%3buser id=xuancuong2531_SQLLogin_1%3bpwd=zxsh6ec39m%3bdata source=cuongsport.mssql.somee.com%3bpersist security info=False%3binitial catalog=cuongsport</Value>
-    </DestinationConnectionStrings>
-  </ItemGroup>
-  <ItemGroup>
-    <EFMigrations Include="Casetudy.Models.AppDbContext">
-      <Value>workstation id=cuongsport.mssql.somee.com%3bpacket size=4096%3buser id=xuancuong2531_SQLLogin_1%3bpwd=zxsh6ec39m%3bdata source=cuongsport.mssql.somee.com%3bpersist security info=False%3binitial catalog=cuongsport</Value>
-    </EFMigrations>
-  </ItemGroup>
 </Project>

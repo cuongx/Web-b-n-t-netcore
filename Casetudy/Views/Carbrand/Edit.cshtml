@@ -1,12 +1,13 @@
 ﻿@model CarbrandEditViewsModel
 
 @{
+    Layout = "~/Views/Shared/_Admin.cshtml";
     ViewBag.Title = "Carbrand Edit";
 }
 
-    <form asp-controller="Carbrand" asp-action="Edit" method="post">
+    <form enctype="multipart/form-data" asp-controller="Carbrand" asp-action="Edit" method="post">
         <div class="text-danger" asp-validation-summary="All"></div>
-        <input hidden asp-for="Id"/>
+        <input hidden asp-for="Id" />
         <div class="form-group row">
             <div class="col-sm-12">
                 <label class="ml-3 mx-3 text-white" asp-for="Name" style="color:crimson"></label>
@@ -16,9 +17,30 @@
         </div>
         <div class="form-group row">
             <div class="col-sm-12">
-                <button type="submit" class="btn btn-info ">CreateRole<i class="fas fa-heart ml-2" aria-hidden="true"></i></button>
+                <label class="ml-3 mx-3 text-white" asp-for="AvatarPath" style="color:crimson"></label>
+                <div class="custom-file col-sm-10">
+                    <input class="custom-file-input" asp-for="AvatarPath">
+                    <label class="custom-file-label" id="avatar" for="custom-file">Choose file</label>
+                </div>
+            </div>
+        </div>
+        <div class="form-group row">
+            <div class="col-sm-12">
+                <button type="submit" class="btn btn-info ">Update<i class="fas fa-heart ml-2" aria-hidden="true"></i></button>
                 <a class="btn btn-success" asp-controller="Carbrand" asp-action="Index">Back</a>
             </div>
         </div>
 
     </form>
+@section Scripts{
+
+    <script>
+        $(Document).ready(function () {
+            $(".custom-file-input").on("change", function () {
+                var fileName = $(this).val().split("\\").pop();
+                $(this).siblings(".custom-file-label").addClass("selected").html(fileName);
+                $("#avatar").attr("src", window.URL.createObjectURL($(this)[0].files[0]));
+            });
+        });
+    </script>
+}

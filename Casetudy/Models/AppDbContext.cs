@@ -1,4 +1,5 @@
 ﻿using Case.Models;
+using Casetudy.Models.ListAvatar;
 using Microsoft.AspNetCore.Identity.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
@@ -17,6 +18,7 @@ namespace Casetudy.Models
         {
 
         }
+        public DbSet<Gallery> Gallerys { get; set; }
         public DbSet<Order> Orders { get; set; }
         public DbSet<Employees> Employees { get; set; }
         public DbSet<Carbrand> Carbrands { get; set; }
@@ -24,9 +26,9 @@ namespace Casetudy.Models
         public DbSet<EmployeeDescription> EmployeeDescriptions { get; set; }
         protected override void OnModelCreating(ModelBuilder modelBuilder)
         {
-
-            modelBuilder.Entity<EmployeeDescription>().HasKey(ed => new { ed.EmployeeId, ed.DescriptionId });
+                        
             base.OnModelCreating(modelBuilder);
+            modelBuilder.Entity<EmployeeDescription>().HasKey(ed => new { ed.EmployeeId, ed.DescriptionId });
             modelBuilder.Entity<Employees>().HasData(
 
                   new Employees()
@@ -115,13 +117,13 @@ namespace Casetudy.Models
 
                       });
 
-            modelBuilder.Entity<Order>().HasData(
-                   new Order()
-                   {
-                       OrderId = 1,
-                       OrderName  = "Trắng"
+            //modelBuilder.Entity<Order>().HasData(
+            //       new Order()
+            //       {
+            //           OrderId = 1,
+            //           OrderName  = "Trắng"
 
-                   });
+            //       });
         }
     }
   }

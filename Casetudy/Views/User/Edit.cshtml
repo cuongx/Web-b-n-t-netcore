@@ -1,5 +1,6 @@
 ﻿@model UserEditViewsModel
 @{
+    Layout = "~/Views/Shared/_Admin.cshtml";
     ViewBag.Title = "Edit UserViewsModel";
     var role = ViewBag.Role as IQueryable<IdentityRole>;
 }

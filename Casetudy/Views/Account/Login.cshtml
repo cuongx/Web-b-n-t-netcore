@@ -1,41 +1,60 @@
 ﻿@model LoginViewsModel
-@{ 
+@{
     ViewBag.Title = "Login ViewsModel";
+    Layout = "~/Views/Shared/_Login.cshtml";
 }
-    <body>
-        <div class="container">
-            <div class="row">
-                <div class="col-sm-9 col-md-7 col-lg-5 mx-auto">
-                    <div class="card card-signin my-5">
-                        <div class="card-body">
-                            <h5 class="card-title text-center">Sign In</h5>
-                            <form class="form-signin" asp-controller="Account" asp-action="Login" method="post">
-                                <div class="text-danger" asp-validation-summary="All"></div>
-                                <input hidden asp-for="ReturnUrl" value="@ViewBag.ReturnUrl" />
-                                <div class="form-label-group">
-                                    <input type="email" asp-for="Email" class="form-control" placeholder="Email address" >
-                                    <label asp-for="Email"></label>
-                                    <span asp-validation-for="Email"></span>
-                                </div>
+<div class="limiter">
+    <div class="container-login100">
+        <div class="wrap-login100">
+            <div class="login100-form-title" style="background-image: url(images/bg-01.jpg);">
+                <span class="login100-form-title-1">
+                    Sign In
+                </span>
+            </div>
+            <form class="login100-form validate-form" asp-controller="Account" asp-action="Login" method="post">
+                <input hidden asp-for="ReturnUrl" value="@ViewBag.ReturnUrl" />            
+                <div class="wrap-input100 validate-input m-b-26" data-validate="Username is required">
+                    <span class="label-input100">Email</span>
+                    <input class="input100" type="text" asp-for="Email" name="Email" value="xuanc48@gmail.com" >
+                    <span class="focus-input100" asp-validation-for="Email"></span>
+                </div>
 
-                                <div class="form-label-group">
-                                    <input type="password" asp-for="Password" class="form-control" placeholder="Password">
-                                    <label asp-for="Password"></label>
-                                    <span asp-validation-for="Password"></span>
-                                </div>
+                <div class="wrap-input100 validate-input m-b-18" data-validate="Password is required">
+                    <span class="label-input100">Password</span>
+                    <input class="input100" type="password" asp-for="Password" value="Asds1234!" >
+                    <span class="focus-input100 text-danger"></span>
+                </div>
 
-                                <div class="custom-control custom-checkbox mb-3">
-                                    <input type="checkbox" asp-for="Remember" class="custom-control-input">
-                                    <label class="custom-control-label" asp-for="Remember">Remember</label>
-                                </div>
-                                <button class="btn btn-lg btn-primary btn-block text-uppercase" type="submit">Sign in</button>
-                                <hr class="my-4">
-                                <button class="btn btn-lg btn-google btn-block text-uppercase bg-primary my-2" type="submit"><i class="fab fa-google mr-2"></i> Sign in with Google</button>
-                                <button class="btn btn-lg btn-facebook btn-block text-uppercase bg-primary" type="submit"><i class="fab fa-facebook-f mr-2"></i> Sign in with Facebook</button>
-                            </form>
-                        </div>
+                <div class="flex-sb-m w-full p-b-30">
+                    <div class="contact100-form-checkbox">
+                        <input class="input-checkbox100" asp-for="Remember" type="checkbox" name="Remember">
+                        <label class="label-checkbox100" asp-for="Remember">
+                            Remember me
+                        </label>
+                    </div>
+                    <div>
+                        <a asp-controller="Account" asp-action="Register" class="txt1">
+                            Forgot Register?
+                        </a>
                     </div>
                 </div>
-            </div>
+
+                <div class="container-login100-form-btn">
+                    <button type="submit" class="login100-form-btn">
+                        Login
+                    </button>
+                </div>
+            </form>
         </div>
-    </body>
+    </div>
+</div>
+
+
+
+
+
+
+
+
+
+

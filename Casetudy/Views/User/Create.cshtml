@@ -1,5 +1,6 @@
 ﻿@model UserCreateViewsModel;
 @{ 
+    Layout = "~/Views/Shared/_Admin.cshtml";
     ViewBag.Title = "User Create ViewModel";
     var roles = ViewBag.Roles as IQueryable<IdentityRole>;
 }

@@ -1,78 +1,126 @@
 ﻿@model HomeCreateViewsModel
 @{
+    Layout = "~/Views/Shared/_Admin.cshtml";
     ViewBag.Title = "Home Create";
     var carbrand = ViewBag.Carbrands as List<Carbrand>;
     var description = ViewBag.Descriptions as List<Description>;
+    System.DateTime moment = new System.DateTime();
+    int years = moment.Year;
+
 
 }
-<form enctype="multipart/form-data" asp-controller="Home" asp-action="Create" method="post">
-    <div class="form-group row">
-        <label class="col-sm-2 col-form-label text-white" asp-for="Name"></label>
-        <div class="col-sm-10">
-            <input class="form-control" asp-for="Name" placeholder="Name">
-            <span class="text-danger" asp-validation-for="Name"></span>
+    <form enctype="multipart/form-data" asp-controller="Home" asp-action="Create" method="post">
+        <div class="form-group row">
+            <label class="col-sm-2 col-form-label text-white" asp-for="Name"></label>
+            <div class="col-sm-10">
+                <input class="form-control" asp-for="Name" placeholder="Name">
+                <span class="text-danger" asp-validation-for="Name"></span>
+            </div>
         </div>
-    </div>
-    <div class="form-group row">
-        <label class="col-sm-2 col-form-label text-white" asp-for="Price"></label>
-        <div class="col-sm-10">
-            <input class="form-control" asp-for="Price" placeholder="Price">
-            <span class="text-danger" asp-validation-for="Price"></span>
+        <div class="form-group row">
+            <label class="col-sm-2 col-form-label text-white" asp-for="Price"></label>
+            <div class="col-sm-10">
+                <input class="form-control" asp-for="Price" placeholder="Price">
+                <span class="text-danger" asp-validation-for="Price"></span>
+            </div>
         </div>
-    </div>
 
-    <div class="form-group row">
-        <label class="col-sm-2 col-form-label text-white" asp-for="CarbrandId">Carbrand</label>
+        <div class="form-group row">
+            <label class="col-sm-2 col-form-label text-white" asp-for="CarbrandId">Carbrand</label>
             <select class="col-sm-10 " asp-for="CarbrandId">
-                <option value="">Select a CarbranId</option>
-                    @if (carbrand != null)
+                <option value="">Select a CarbranId </option>
+                @if (carbrand != null)
+                {
+                    foreach (var dept in carbrand)
+
                     {
-                        foreach (var dept in carbrand)
 
-                        {
-
-                              <option value="@dept.CarbrandId">@dept.CarbrandName</option>
-                        }
+                        <option value="@dept.CarbrandId">@dept.CarbrandName</option>
                     }
+                }
             </select>
+            <span class="text-danger" asp-validation-for="CarbrandId"></span>
         </div>
 
-    <div class="form-group row">
+        <div class="form-group row">
+            @if (description != null)
+                @foreach (var dept in description)
+                {
+                    <label class=" col-sm-2 form-check-label text-white">@dept.OriginName</label>
+                    <div class="col-sm-10">
+                        <div class="form-check">
+                            <input name="Descriptions" type="checkbox" class="form-check-input" value="@dept.DescriptionId">
+                            @*<label class="form-check-label">@dept.OriginName</label>*@
+                        </div>
 
-        @if (description != null)
-            @foreach (var dept in description)
-            {
-                <label class=" col-sm-2 form-check-label text-white">@dept.OriginName</label>
-                <div class="col-sm-10">
-                    <div class="form-check">
-                        <input name="Descriptions" type="checkbox" class="form-check-input" value="@dept.DescriptionId">
-                        @*<label class="form-check-label">@dept.OriginName</label>*@
                     </div>
-
-                </div>
-            }
-    </div>
-
-    <div class="form-group row">
-        <label class="col-sm-2 col-form-label text-white" asp-for="Avatar"></label>
-        <div class="custom-file col-sm-10">
-            <input class="custom-file-input" asp-for="Avatar">
-            <label class="custom-file-label" id="avatar" for="custom-file">Choose file</label>
+                }
         </div>
-    </div>
+        <div class="form-group row">
+            <label class="col-sm-2 col-form-label text-white" asp-for="Yeard"></label>
+            <select class="col-sm-10" asp-for="Yeard">
+                <option value="">Select Years</option>
+                @for (years = 1990; years <= 2020; years++)
+                {
 
-    @*<div class="row col-4 offset-4">
+                    <option value="@years">@years.ToString()</option>
+                }
+
+            </select>
+            <span class="text-danger" asp-validation-for="Yeard"></span>
+        </div>
+        <div class="form-group row">
+            <label class="col-sm-2 col-form-label text-white" asp-for="Color"></label>
+            <select class="col-sm-10" asp-for="Color" placeholder="Color">
+                <option value="">Select Color</option>
+                <option value="Red">Red</option>
+                <option value="Black">Black</option>
+                <option value="Blue">Blue</option>
+                <option value="White">White</option>
+                <option value="Silver">Silver</option>
+            </select>
+            <span class="text-danger" asp-validation-for="Color"></span>
+        </div>
+        <div class="form-group row">
+            <label class="col-sm-2 col-form-label text-white" asp-for="Register">Carbrand</label>
+            <select class="col-sm-10 " asp-for="Register">
+                <option value="">Select Register</option>
+                @for (years = 1990; years <= 2020; years++)
+                {
+
+                    <option value="@years">@years.ToString()</option>
+                }
+            </select>
+            <span class="text-danger" asp-validation-for="Register"></span>
+        </div>
+        <div class="form-group row">
+            <label class="col-sm-2 col-form-label text-white" asp-for="Avatar"></label>
+            <div class="custom-file col-sm-10">
+                <input class="custom-file-input" asp-for="Avatar">
+                <label class="custom-file-label" id="avatar" for="custom-file">Choose file</label>
+            </div>
+        </div>
+        <div class="form-group row">
+            <label asp-for="GalleryFiles" class="col-sm-2 col-form-label text-white"></label>
+            <div class="custom-file col-sm-10">
+                <input asp-for="GalleryFiles" class="custom-file-input" id="customFile">
+                <label class="custom-file-label" for="customFile">Choose file</label>
+            </div>
+            <span asp-validation-for="GalleryFiles" class="text-danger"></span>
+        </div>
+
+        @*<div class="row col-4 offset-4">
             <img src="@avatarPath" class="myImage" style="height:250px" ;width="auto" asp-append-version="true" />
         </div>*@
 
-    <div asp-validation-summary="All"></div>
-    <div class="form-group row">
-        <div class="col-sm-12">
-            <button type="submit" class="btn btn-danger mx-2">Create</button>
-            <a class="btn btn-primary mx-2" asp-controller="Home" asp-action="Index">Back</a>
+        <div asp-validation-summary="All"></div>
+        <div class="form-group row">
+            <div class="col-sm-12">
+                <button type="submit" class="btn btn-danger mx-2">Create</button>
+                <a class="btn btn-primary mx-2" asp-controller="Home" asp-action="Index">Back</a>
+            </div>
         </div>
-    </div>
-</form>
+    </form>
 
 @section Scripts{
 

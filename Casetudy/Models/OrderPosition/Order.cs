@@ -8,15 +8,15 @@ namespace Casetudy.Models
 {
     public class Order
     {
-        [Required]
-        public int OrderId { get; set; }
+        [Key]
+        public string OrderId { get; set; }
 
         [Required]
         [MaxLength(100)]
         public string OrderName { get; set; }
 
         public Employees Employees { get; set; }
-        public int EmployeeId { get; set; }
+        //public int EmployeeId { get; set; }
 
         [StringLength(100)]
         public DateTime Date { get; set; }
@@ -29,10 +29,7 @@ namespace Casetudy.Models
         public string Phone { get; set; }
         [StringLength(100)]
    
-        public string Carname { get; set; }
-       
-        public string Avatar { get; set; }
-    
+        public string Carname { get; set; }      
         public string CarColor { get; set; }
 
 

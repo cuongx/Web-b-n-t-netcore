@@ -10,7 +10,8 @@ namespace Casetudy.Views.ViewsModel
     public class HomeEditViewsModel:HomeCreateViewsModel
     {
     
-        public int Id { get; set; }
+        //public int Id { get; set; }
+        [Required]
         public string AvatarPath { get; set; }
         public List<Description> SelectDescriptions { get; set; }
 

@@ -8,18 +8,23 @@ namespace Casetudy.Views.ViewsModel.Order
 {
     public class OrderViewsModel
     {
+        public string OrderId { get; set; }
         [Required]
-        public int Id { get; set; }
-        [Required]
+        [StringLength(100)]
         public string Name { get; set; }
         public DateTime Date { get; set; }
-        [StringLength(100)]
+        [Required]
         public string City { get; set; }
-
-        public string Carbrand { get; set; }
+        //[Required]
+        //public string Carbrand { get; set; }
+        [Required]
         [Phone]
         public string Phone { get; set; }
-      
+        [Required]
+        [StringLength(100)]
+        public string CarName { get; set; }
+        [Required]
+        public string CarColor { get; set; }
 
     }
 }

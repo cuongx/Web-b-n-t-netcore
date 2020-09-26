@@ -10,8 +10,8 @@ namespace Casetudy.Models
   public interface IEmployeesRepository
     {
         //IEnumerable<Employees> Search(string key);
-        IEnumerable<Employees> Get();
-        EmployeeDetailsViewsModel Gets(int id);
+       IEnumerable<Employees> Get();
+       EmployeeDetailsViewsModel Gets(int id);
         CreateEmployeeViewsModel Create(CreateEmployeeViewsModel employees);
         EditEmployeeViewsModel Edit(EditEmployeeViewsModel employees);
         bool Delete(int id);

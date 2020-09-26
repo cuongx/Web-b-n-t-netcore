@@ -1,5 +1,6 @@
 ﻿ @model List<Employees>;
 @{
+ 
     ViewBag.Title = "Products ";
     List<Carbrand> carbrands = ViewBag.Category;
 }
@@ -40,8 +41,9 @@
                             {
 
                                 <a class="level-top" asp-controller="Home" asp-action="Products" asp-route-id="@carbrand.CarbrandId">
-                                    <i class="fas fa-car text-danger"></i>
-                                    <span class="text-white">@carbrand.CarbrandName</span><br /><hr />
+                                    @*<i class="fas fa-car text-danger"></i>*@
+                                    <img src="~/icon/@carbrand.AvatarPath" alt="Logo" style="width:40px" />
+                                    <span class="text-black font-weight-bold">@carbrand.CarbrandName</span><br /><hr />
                                 </a>
 
                             }
@@ -187,7 +189,7 @@
                     <a asp-controller="Home" asp-action="Details" asp-route-id="@pb.Id" class="card-text"><h6>@pb.Name</h6></a>
                     <span class="woocommerce-Price-amount amount text-danger">@pb.Price&nbsp;<span class="woocommerce-Price-currencySymbol">₫</span></span>
                 </div>
-                <div class="card-body text-center"  style="color:#fdd835">
+                <div class="card-body text-center"  style="color:#ffa801">
                     <a>Hộp số:Số tự động</a>
                     @*<h3 class="font-weight-bolder text-danger">$@employee.Price</h3>*@
 

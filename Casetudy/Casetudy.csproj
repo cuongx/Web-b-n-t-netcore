@@ -36,17 +36,63 @@
     <Compile Remove="Migrations\20200712011552_Update20200711161300_CreateOrderTable.Designer.cs" />
     <Compile Remove="Migrations\20200712013517_UpdatteCreateOrderTable.cs" />
     <Compile Remove="Migrations\20200712013517_UpdatteCreateOrderTable.Designer.cs" />
+    <Compile Remove="Migrations\20200914132146_ALTERTABLEEmployeeGallerys.cs" />
+    <Compile Remove="Migrations\20200914132146_ALTERTABLEEmployeeGallerys.Designer.cs" />
+    <Compile Remove="Migrations\20200914132423_ALTERTABLEEmployeeGallerys.cs" />
+    <Compile Remove="Migrations\20200914132423_ALTERTABLEEmployeeGallerys.Designer.cs" />
+    <Compile Remove="Migrations\20200914132627_AlterTableEmployeeGallerys.cs" />
+    <Compile Remove="Migrations\20200914132627_AlterTableEmployeeGallerys.Designer.cs" />
+    <Compile Remove="Migrations\20200914132837_AlterTableEmployeeGallerys.cs" />
+    <Compile Remove="Migrations\20200914132837_AlterTableEmployeeGallerys.Designer.cs" />
+    <Compile Remove="Migrations\20200914133243_AlterTableEmployeeGallerys.cs" />
+    <Compile Remove="Migrations\20200914133243_AlterTableEmployeeGallerys.Designer.cs" />
+    <Compile Remove="Migrations\20200914133947_AlterTableEmployeeGallerys.cs" />
+    <Compile Remove="Migrations\20200914133947_AlterTableEmployeeGallerys.Designer.cs" />
+    <Compile Remove="Migrations\20200914134421_AlterTableEmployees.cs" />
+    <Compile Remove="Migrations\20200914134421_AlterTableEmployees.Designer.cs" />
+    <Compile Remove="Migrations\20200914135146_AlterTableEmployees.cs" />
+    <Compile Remove="Migrations\20200914135146_AlterTableEmployees.Designer.cs" />
+    <Compile Remove="Migrations\20200914155429_AlterTableGallerys.cs" />
+    <Compile Remove="Migrations\20200914155429_AlterTableGallerys.Designer.cs" />
+    <Compile Remove="Migrations\20200918112746_AlterTableGallerys.cs" />
+    <Compile Remove="Migrations\20200918112746_AlterTableGallerys.Designer.cs" />
+    <Compile Remove="Migrations\20200918112921_AlterTableGallerys.cs" />
+    <Compile Remove="Migrations\20200918112921_AlterTableGallerys.Designer.cs" />
+    <Compile Remove="Migrations\20200918114509_AlterTableGallerys.cs" />
+    <Compile Remove="Migrations\20200918114509_AlterTableGallerys.Designer.cs" />
+    <Compile Remove="Migrations\20200918115150_AlterTableGallerys.cs" />
+    <Compile Remove="Migrations\20200918115150_AlterTableGallerys.Designer.cs" />
+    <Compile Remove="Migrations\20200918120053_InitDbb.cs" />
+    <Compile Remove="Migrations\20200918120053_InitDbb.Designer.cs" />
+    <Compile Remove="Migrations\20200918124432_AlterTableGallerys.cs" />
+    <Compile Remove="Migrations\20200918124432_AlterTableGallerys.Designer.cs" />
+    <Compile Remove="Migrations\20200918143020_AlterTableGallerys.cs" />
+    <Compile Remove="Migrations\20200918143020_AlterTableGallerys.Designer.cs" />
+    <Compile Remove="Migrations\20200918161550_AlterTableGallerys.cs" />
+    <Compile Remove="Migrations\20200918161550_AlterTableGallerys.Designer.cs" />
+    <Compile Remove="Migrations\20200919023352_AlterTableEmployeess.cs" />
+    <Compile Remove="Migrations\20200919023352_AlterTableEmployeess.Designer.cs" />
+    <Compile Remove="Migrations\20200925112533_AlterTableCarbrand.cs" />
+    <Compile Remove="Migrations\20200925112533_AlterTableCarbrand.Designer.cs" />
   </ItemGroup>
 
   <ItemGroup>
     <PackageReference Include="Microsoft.AspNetCore.Identity.EntityFrameworkCore" Version="3.1.5" />
     <PackageReference Include="Microsoft.EntityFrameworkCore" Version="3.1.5" />
+    <PackageReference Include="Microsoft.EntityFrameworkCore.Relational" Version="3.1.5" />
     <PackageReference Include="Microsoft.EntityFrameworkCore.SqlServer" Version="3.1.5" />
     <PackageReference Include="Microsoft.EntityFrameworkCore.Tools" Version="3.1.5">
       <PrivateAssets>all</PrivateAssets>
       <IncludeAssets>runtime; build; native; contentfiles; analyzers; buildtransitive</IncludeAssets>
     </PackageReference>
     <PackageReference Include="Microsoft.Extensions.Identity.Core" Version="3.1.5" />
+    <PackageReference Include="Newtonsoft.Json" Version="12.0.3" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <Folder Include="Properties\PublishProfiles\" />
+    <Folder Include="wwwroot\gallery\" />
+    <Folder Include="wwwroot\icon\" />
   </ItemGroup>
 
 </Project>

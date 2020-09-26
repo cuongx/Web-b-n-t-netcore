@@ -1,6 +1,14 @@
-﻿@model IEnumerable<Order>;
+﻿@inject SignInManager<ApplicationUser> signInManager
+@model IEnumerable<Order>;
 @{
+    @if (User.IsInRole("Admin"))
+    {
+        Layout = "~/Views/Shared/_Admin.cshtml";
+    };
+
+
     ViewBag.Title = "Index";
+    //List<ApplicationUser> users = ViewBag.User;
 }
 
 <div class="container-fluid">
@@ -14,7 +22,7 @@
         </div>
         <h3 class="card-header text-center font-weight-bold text-uppercase py-4">Order</h3>
         <div class="card-body">
-            <div  class="table-editable">
+            <div class="table-editable">
                 <span class="table-add float-right mb-3 mr-2">
                     <a asp-controller="Order" asp-action="Create" class="text-success">
                         <i class="fas fa-plus fa-2x" aria-hidden="true"></i>
@@ -39,8 +47,6 @@
                         {
                             @foreach (var role in Model)
                             {
-
-
                                 <tr>
                                     <td>@role.OrderId</td>
                                     <td>@role.OrderName</td>
@@ -64,12 +70,10 @@
                                         </span>
                                     </td>
                                     <td>
-                                        @if (User.IsInRole("Admin")) {
                                         <span class="table-remove">
-                                            <a asp-controller="Order" asp-action="Edit" asp-route-id="@role.OrderId" class="btn btn-success">Edit</a>
-                                            <a asp-controller="Order" asp-action="Delete" class="btn btn-danger" asp-route-id="@role.OrderId">Delete</a>
+                                            <a asp-controller="Order" asp-action="Edit" asp-route-id="@role.OrderId"><i class="fas fa-edit" style="color:royalblue"></i></a>
+                                            <a asp-controller="Order" asp-action="Delete" asp-route-id="@role.OrderId"><i class="fas fa-trash-alt" style="color:red"></i></a>
                                         </span>
-                                        }
                                     </td>
                                 </tr>
 

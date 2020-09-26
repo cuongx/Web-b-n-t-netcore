@@ -10,8 +10,8 @@ using System.Linq;
 using System.Threading.Tasks;
 
 namespace Casetudy.Controllers
-{  
-    [Authorize(Roles ="Admin")]
+{
+    [Authorize(Roles = "Admin")]
     public class UserController : Controller
     {
         private readonly RoleManager<IdentityRole> roleManager;

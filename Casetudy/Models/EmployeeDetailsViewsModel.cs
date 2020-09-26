@@ -1,4 +1,6 @@
-﻿using System;
+﻿using Casetudy.Models.ListAvatar;
+using Microsoft.AspNetCore.Http;
+using System;
 using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations;
 using System.Linq;
@@ -19,6 +21,15 @@ namespace Casetudy.Models
         public string CarbrandName { get; set; }
 
         public string AvartarPath { get; set; }
+     
+        public int Yeard { get; set; }
+        public int Register { get; set; }
+    
+        public string Color { get; set; }
         public List<Description> Descriptions { get; set; }
+
+        public IFormFileCollection GalleryFiles { get; set; }
+
+        public List<GalleryModel> Gallery { get; set; }
     }
 }

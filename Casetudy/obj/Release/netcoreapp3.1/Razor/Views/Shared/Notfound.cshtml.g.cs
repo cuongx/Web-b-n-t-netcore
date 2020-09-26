@@ -47,8 +47,15 @@ using Casetudy.Views.ViewsModel.Order;
 #line default
 #line hidden
 #nullable disable
+#nullable restore
+#line 6 "D:\APS NETCORE\Casetudy\Views\_ViewImports.cshtml"
+using Newtonsoft.Json;
+
+#line default
+#line hidden
+#nullable disable
     [global::Microsoft.AspNetCore.Razor.Hosting.RazorSourceChecksumAttribute(@"SHA1", @"e6dc4447a5d38a60a63aa60d9c0298dff7956928", @"/Views/Shared/Notfound.cshtml")]
-    [global::Microsoft.AspNetCore.Razor.Hosting.RazorSourceChecksumAttribute(@"SHA1", @"bc9cbadba6c8992287d4faf64a98beb719f857d3", @"/Views/_ViewImports.cshtml")]
+    [global::Microsoft.AspNetCore.Razor.Hosting.RazorSourceChecksumAttribute(@"SHA1", @"908a7511b1c98c39fcd69dfdd59845ce4dfaaba7", @"/Views/_ViewImports.cshtml")]
     public class Views_Shared_Notfound : global::Microsoft.AspNetCore.Mvc.Razor.RazorPage<dynamic>
     {
         private static readonly global::Microsoft.AspNetCore.Razor.TagHelpers.TagHelperAttribute __tagHelperAttribute_0 = new global::Microsoft.AspNetCore.Razor.TagHelpers.TagHelperAttribute("asp-controller", "Home", global::Microsoft.AspNetCore.Razor.TagHelpers.HtmlAttributeValueStyle.DoubleQuotes);
@@ -95,7 +102,7 @@ using Casetudy.Views.ViewsModel.Order;
 #line hidden
 #nullable disable
             WriteLiteral("</p>\r\n        <p class=\"text-gray-500 mb-0\">It looks like you found a glitch in the matrix...</p>\r\n        ");
-            __tagHelperExecutionContext = __tagHelperScopeManager.Begin("a", global::Microsoft.AspNetCore.Razor.TagHelpers.TagMode.StartTagAndEndTag, "e6dc4447a5d38a60a63aa60d9c0298dff79569284879", async() => {
+            __tagHelperExecutionContext = __tagHelperScopeManager.Begin("a", global::Microsoft.AspNetCore.Razor.TagHelpers.TagMode.StartTagAndEndTag, "e6dc4447a5d38a60a63aa60d9c0298dff79569285033", async() => {
                 WriteLiteral("&larr; Click here to navigate to the home page");
             }
             );

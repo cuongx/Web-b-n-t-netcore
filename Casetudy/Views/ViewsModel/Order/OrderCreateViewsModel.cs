@@ -8,6 +8,7 @@ namespace Casetudy.Views.ViewsModel.Order
 {
     public class OrderCreateViewsModel
     {
+        public string OrderId { get; set; }
         [Required]
         [StringLength(100)]
         public string Name { get; set; }       

@@ -8,7 +8,7 @@ namespace Casetudy.Models
 {
     public class OrderEmployeesViewsModel
     {
-        public int OrderId { get; set; }
+        public string OrderId { get; set; }
 
         [Required]
         [MaxLength(100)]

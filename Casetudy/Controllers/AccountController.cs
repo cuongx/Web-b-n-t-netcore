@@ -10,6 +10,7 @@ using System.Threading.Tasks;
 
 namespace Casetudy.Controllers
 {
+    [Authorize]
     public class AccountController:Controller
     {
         private readonly UserManager<ApplicationUser> userManager;

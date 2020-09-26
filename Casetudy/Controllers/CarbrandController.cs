@@ -1,8 +1,10 @@
 ﻿using Casetudy.Models;
 using Casetudy.Views.ViewsModel;
+using Microsoft.AspNetCore.Hosting;
 using Microsoft.AspNetCore.Mvc;
 using System;
 using System.Collections.Generic;
+using System.IO;
 using System.Linq;
 using System.Threading.Tasks;
 
@@ -11,11 +13,12 @@ namespace Casetudy.Controllers
     public class CarbrandController : Controller
     {
         private readonly ICarbrandRepository carbrandRepository;
+        private readonly IWebHostEnvironment webHostEnvironment;
 
-        public CarbrandController(ICarbrandRepository carbrandRepository)
+        public CarbrandController(ICarbrandRepository carbrandRepository,IWebHostEnvironment webHostEnvironment)
         {
             this.carbrandRepository = carbrandRepository;
-
+            this.webHostEnvironment = webHostEnvironment;
         }
 
         public IActionResult Index()
@@ -25,7 +28,8 @@ namespace Casetudy.Controllers
             data = role.Select(r => new Carbrand()
             {
                 CarbrandId = r.CarbrandId,
-                CarbrandName= r.CarbrandName
+                CarbrandName= r.CarbrandName,
+                AvatarPath = r.AvatarPath
             }).ToList();
             return View(data);
         }
@@ -41,6 +45,26 @@ namespace Casetudy.Controllers
                 CarbrandName = model.Name,
             };
             var empl = carbrandRepository.Create(emp);
+            if (model.AvatarPath != null)
+            {
+                string routes = Path.Combine(webHostEnvironment.WebRootPath, "icon");
+                var filename = $"{Guid.NewGuid()}_{model.AvatarPath.FileName}";
+                filename = model.AvatarPath.FileName;
+                var load = Path.Combine(routes, filename);
+                using (var stream = new FileStream(load, FileMode.Create))
+                {
+                    model.AvatarPath.CopyTo(stream);
+                }
+
+            };
+
+            emp.AvatarPath = model.AvatarPath.FileName;
+            var hala = carbrandRepository.Create(emp);
+            if (hala != null)
+            {
+                return RedirectToAction("table", new { id = hala.CarbrandId });
+
+            }
             if (empl != null)
             {             
                 return RedirectToAction("Index", "Carbrand");
@@ -54,7 +78,8 @@ namespace Casetudy.Controllers
             var em = new CarbrandEditViewsModel()
             {
                 Id = emp.CarbrandId,
-                Name = emp.CarbrandName
+                Name = emp.CarbrandName,
+                Avatar = emp.AvatarPath
             };
             return View(em);
         }
@@ -86,13 +111,32 @@ namespace Casetudy.Controllers
                 var car = new Carbrand()
                 {
                     CarbrandId = model.Id,
-                    CarbrandName = model.Name
+                    CarbrandName = model.Name,           
+                           
                 };
-                var result = carbrandRepository.Edit(car);
-                if (result != null)
+                var filename = string.Empty;
+                if (model.AvatarPath != null)
                 {
-                    return RedirectToAction("Index","Carbrand");
+                    string file = Path.Combine(webHostEnvironment.WebRootPath, "icon");
+                    filename = $"{Guid.NewGuid()}_{model.AvatarPath.FileName}";
+                    var load = Path.Combine(file, filename);
+                    using (var stream = new FileStream(load, FileMode.Create))
+                    {
+                        model.AvatarPath.CopyTo(stream);
+                    }                  
+                    if (!string.IsNullOrEmpty(model.Avatar))
+                    {
+                        string fil = Path.Combine(webHostEnvironment.WebRootPath, "icon", model.AvatarPath.FileName);
+                        System.IO.File.Delete(fil);
+                    }
+                    car.AvatarPath = filename;
                 }
+                var empl = carbrandRepository.Edit(car);
+                if (empl != null)
+                {
+                    return RedirectToAction("Index", new { id = empl.CarbrandId });
+                }
+             
             }
             return View(model);
         }

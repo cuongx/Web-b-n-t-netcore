@@ -1,4 +1,5 @@
-﻿using Microsoft.EntityFrameworkCore;
+﻿using Microsoft.AspNetCore.Identity;
+using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.ChangeTracking;
 using System;
 using System.Collections.Generic;
@@ -10,10 +11,12 @@ namespace Casetudy.Models
     public class SqlOrderRepository : IOrderRepository
     {
         private readonly AppDbContext context;
+        private readonly UserManager<ApplicationUser> userManager;
 
-        public SqlOrderRepository(AppDbContext context)
+        public SqlOrderRepository(AppDbContext context, UserManager<ApplicationUser> userManager)
         {
-            this.context = context;
+             this.context = context;
+            this.userManager = userManager;
         }
 
         public Order Create(Order order)
@@ -23,7 +26,7 @@ namespace Casetudy.Models
             return order;
         }
 
-        public bool Delete(int id)
+        public bool Delete(string id)
         {
            var emp =  context.Orders.Find(id);
             if(emp != null)
@@ -47,26 +50,28 @@ namespace Casetudy.Models
             return context.Orders;
         }
 
-        public Order Gets(int id)
+        public Order Gets(string id)
         {
-        //    var data = (from o in context.Orders
-        //                join e in context.Employees
-        //                 on o.EmployeeId equals e.Id
-        //                where o.OrderId == id
-        //                select new OrderEmployeesViewsModel()
-        //                {
-        //                    Avatar = e.AvatarPath,
-        //                    CarColor = o.CarColor,
-        //                    Carname = o.Carname,
-        //                    EmployeeId = e.Id,
-        //                    OrderId = o.OrderId,
-        //                    OrderName = o.OrderName,
-        //                    Date = o.Date,
-        //                    City = o.City,
-        //                    Phone = o.Phone
-        //                }).FirstOrDefault();
-        //    return data;
+            //var data = (from o in context.Orders
+            //            join e in context.Employees                      
+            //             on o.EmployeeId equals e.Id
+            //            where o.OrderId == id
+            //            select new OrderEmployeesViewsModel()
+            //            {
+            //                Avatar = e.AvatarPath,
+            //                CarColor = o.CarColor,
+            //                Carname = o.Carname,
+            //                EmployeeId = e.Id,
+            //                OrderId = o.OrderId,
+            //                OrderName = o.OrderName,
+            //                Date = o.Date,
+            //                City = o.City,
+            //                Phone = o.Phone,
+
+            //            }).ToList();
             return context.Orders.Find(id);
         }
+
+    
     }
 }

@@ -1,8 +1,18 @@
 ﻿@model IEnumerable<Carbrand>;
 
 @{
+    Layout = "~/Views/Shared/_Admin.cshtml";
     ViewBag.Title = "Car brand Model";
 }
+<head>
+    <style>
+
+        .car{
+            height:75px;
+            width:63px;
+        }
+    </style>
+</head>
                 <div class="container-fluid">
                     <div class="card">
                         <div class="card-body">
@@ -25,6 +35,7 @@
                                         <tr>
                                             <th>ID</th>
                                             <th>CarbrandName</th>
+                                            <th>Avatar</th>
                                             <th>Sort</th>
                                             <th>Action</th>
                                         </tr>
@@ -34,9 +45,14 @@
                                         {
                                             @foreach (var role in Model)
                                             {
+                                                var avatarPath = $"/icon/{(role.AvatarPath ?? "iconfor")}";
                                                 <tr>
                                                     <td>@role.CarbrandId</td>
                                                     <td>@role.CarbrandName</td>
+                                                    <td>
+
+                                                        <img src="@avatarPath" class="car" asp-append-version="true" />
+                                                    </td>
                                                     <td class="pt-3-half">
                                                         <span class="table-up">
                                                             <a href="#!" class="indigo-text">

@@ -6,10 +6,10 @@ using System.Threading.Tasks;
 
 namespace Casetudy.Views.ViewsModel
 {
-    public class CarbrandEditViewsModel
+    public class CarbrandEditViewsModel:CarbrandCreateVieswModel
     {
         public int Id { get; set; }
-        [Required]
-        public string Name { get; set; }
+        public string Avatar { get; set; }
+
     }
 }

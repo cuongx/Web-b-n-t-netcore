@@ -98,5 +98,12 @@ D:\APS NETCORE\Casetudy\obj\Release\netcoreapp3.1\Razor\Views\Home\table.cshtml.
 D:\APS NETCORE\Casetudy\obj\Release\netcoreapp3.1\Razor\Views\Order\Create.cshtml.g.cs
 D:\APS NETCORE\Casetudy\obj\Release\netcoreapp3.1\Razor\Views\Order\Edit.cshtml.g.cs
 D:\APS NETCORE\Casetudy\obj\Release\netcoreapp3.1\Razor\Views\Order\Index.cshtml.g.cs
-D:\APS NETCORE\Casetudy\obj\Release\netcoreapp3.1\Razor\Views\Shared\_Layout1.cshtml.g.cs
 D:\APS NETCORE\Casetudy\obj\Release\netcoreapp3.1\Razor\Views\User\Create.cshtml.g.cs
+D:\APS NETCORE\Casetudy\obj\Release\netcoreapp3.1\Casetudy.csprojAssemblyReference.cache
+D:\APS NETCORE\Casetudy\bin\Release\netcoreapp3.1\Newtonsoft.Json.dll
+D:\APS NETCORE\Casetudy\obj\Release\netcoreapp3.1\Razor\Views\Dashboard\Index.cshtml.g.cs
+D:\APS NETCORE\Casetudy\obj\Release\netcoreapp3.1\Razor\Views\Dashboard\videos.cshtml.g.cs
+D:\APS NETCORE\Casetudy\obj\Release\netcoreapp3.1\Razor\Views\Home\ListCart.cshtml.g.cs
+D:\APS NETCORE\Casetudy\obj\Release\netcoreapp3.1\Razor\Views\Shared\_Admin.cshtml.g.cs
+D:\APS NETCORE\Casetudy\obj\Release\netcoreapp3.1\Razor\Views\Shared\_Login.cshtml.g.cs
+D:\APS NETCORE\Casetudy\obj\Release\netcoreapp3.1\Razor\Views\Gallerys\Index.cshtml.g.cs

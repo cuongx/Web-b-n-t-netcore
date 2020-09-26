@@ -9,7 +9,7 @@ namespace Casetudy.Views.ViewsModel.Order
     public class OrderEditViewsModel
     {
         [Required]
-        public int Id { get; set; }
+        public string OrderId { get; set; }
 
         [StringLength(100)]
         [Required]
@@ -27,6 +27,5 @@ namespace Casetudy.Views.ViewsModel.Order
    
         [Required]
         public string Color { get; set; }
-        public string Avatar { get; set; }
     }
 }

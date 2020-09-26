@@ -47,8 +47,15 @@ using Casetudy.Views.ViewsModel.Order;
 #line default
 #line hidden
 #nullable disable
+#nullable restore
+#line 6 "D:\APS NETCORE\Casetudy\Views\_ViewImports.cshtml"
+using Newtonsoft.Json;
+
+#line default
+#line hidden
+#nullable disable
     [global::Microsoft.AspNetCore.Razor.Hosting.RazorSourceChecksumAttribute(@"SHA1", @"2be577fae042ad5b3eb4eb25bf2b58f19b4df342", @"/Views/Error/Error.cshtml")]
-    [global::Microsoft.AspNetCore.Razor.Hosting.RazorSourceChecksumAttribute(@"SHA1", @"bc9cbadba6c8992287d4faf64a98beb719f857d3", @"/Views/_ViewImports.cshtml")]
+    [global::Microsoft.AspNetCore.Razor.Hosting.RazorSourceChecksumAttribute(@"SHA1", @"908a7511b1c98c39fcd69dfdd59845ce4dfaaba7", @"/Views/_ViewImports.cshtml")]
     public class Views_Error_Error : global::Microsoft.AspNetCore.Mvc.Razor.RazorPage<int>
     {
         private static readonly global::Microsoft.AspNetCore.Razor.TagHelpers.TagHelperAttribute __tagHelperAttribute_0 = new global::Microsoft.AspNetCore.Razor.TagHelpers.TagHelperAttribute("asp-controller", "Home", global::Microsoft.AspNetCore.Razor.TagHelpers.HtmlAttributeValueStyle.DoubleQuotes);
@@ -87,7 +94,7 @@ using Casetudy.Views.ViewsModel.Order;
 #line hidden
 #nullable disable
             WriteLiteral("<div class=\"alert alert-danger\">\r\n    <h1>Error</h1> <h1>404</h1>\r\n    <hr />\r\n    <h5>Employee Can not be found</h5>\r\n</div>\r\n");
-            __tagHelperExecutionContext = __tagHelperScopeManager.Begin("a", global::Microsoft.AspNetCore.Razor.TagHelpers.TagMode.StartTagAndEndTag, "2be577fae042ad5b3eb4eb25bf2b58f19b4df3424725", async() => {
+            __tagHelperExecutionContext = __tagHelperScopeManager.Begin("a", global::Microsoft.AspNetCore.Razor.TagHelpers.TagMode.StartTagAndEndTag, "2be577fae042ad5b3eb4eb25bf2b58f19b4df3424879", async() => {
                 WriteLiteral("\r\n    Click here to navigate to the home page\r\n");
             }
             );

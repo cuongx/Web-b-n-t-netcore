@@ -74,8 +74,6 @@ D:\APS NETCORE\Casetudy\bin\Debug\netcoreapp3.1\runtimes\win-x86\native\sni.dll
 D:\APS NETCORE\Casetudy\bin\Debug\netcoreapp3.1\runtimes\unix\lib\netcoreapp2.0\System.Runtime.Caching.dll
 D:\APS NETCORE\Casetudy\bin\Debug\netcoreapp3.1\runtimes\win\lib\netcoreapp2.0\System.Runtime.Caching.dll
 D:\APS NETCORE\Casetudy\bin\Debug\netcoreapp3.1\runtimes\win\lib\netstandard2.0\System.Security.Cryptography.ProtectedData.dll
-D:\APS NETCORE\Casetudy\obj\Debug\netcoreapp3.1\Casetudy.csproj.CoreCompileInputs.cache
-D:\APS NETCORE\Casetudy\obj\Debug\netcoreapp3.1\Casetudy.MvcApplicationPartsAssemblyInfo.cache
 D:\APS NETCORE\Casetudy\obj\Debug\netcoreapp3.1\Razor\Views\Account\Login.cshtml.g.cs
 D:\APS NETCORE\Casetudy\obj\Debug\netcoreapp3.1\Razor\Views\Account\Register.cshtml.g.cs
 D:\APS NETCORE\Casetudy\obj\Debug\netcoreapp3.1\Razor\Views\Role\Edit.cshtml.g.cs
@@ -90,7 +88,6 @@ D:\APS NETCORE\Casetudy\obj\Debug\netcoreapp3.1\Razor\Views\Carbrand\Edit.cshtml
 D:\APS NETCORE\Casetudy\obj\Debug\netcoreapp3.1\Razor\Views\Carbrand\Index.cshtml.g.cs
 D:\APS NETCORE\Casetudy\obj\Debug\netcoreapp3.1\Razor\Views\Carbrand\Create.cshtml.g.cs
 D:\APS NETCORE\Casetudy\obj\Debug\netcoreapp3.1\Razor\Views\Home\table.cshtml.g.cs
-D:\APS NETCORE\Casetudy\obj\Debug\netcoreapp3.1\Razor\Views\Shared\_Layout1.cshtml.g.cs
 D:\APS NETCORE\Casetudy\obj\Debug\netcoreapp3.1\Razor\Views\Order\Create.cshtml.g.cs
 D:\APS NETCORE\Casetudy\obj\Debug\netcoreapp3.1\Razor\Views\Order\Index.cshtml.g.cs
 D:\APS NETCORE\Casetudy\obj\Debug\netcoreapp3.1\Razor\Views\Home\Products.cshtml.g.cs
@@ -101,3 +98,12 @@ D:\APS NETCORE\Casetudy\obj\Debug\netcoreapp3.1\Razor\Views\Description\Edit.csh
 D:\APS NETCORE\Casetudy\obj\Debug\netcoreapp3.1\Razor\Views\Description\Index.cshtml.g.cs
 D:\APS NETCORE\Casetudy\obj\Debug\netcoreapp3.1\Razor\Views\Order\Edit.cshtml.g.cs
 D:\APS NETCORE\Casetudy\obj\Debug\netcoreapp3.1\Razor\Views\User\Create.cshtml.g.cs
+D:\APS NETCORE\Casetudy\obj\Debug\netcoreapp3.1\Razor\Views\Shared\_Login.cshtml.g.cs
+D:\APS NETCORE\Casetudy\obj\Debug\netcoreapp3.1\Razor\Views\Shared\_Admin.cshtml.g.cs
+D:\APS NETCORE\Casetudy\obj\Debug\netcoreapp3.1\Razor\Views\Dashboard\Index.cshtml.g.cs
+D:\APS NETCORE\Casetudy\bin\Debug\netcoreapp3.1\Newtonsoft.Json.dll
+D:\APS NETCORE\Casetudy\obj\Debug\netcoreapp3.1\Razor\Views\Home\ListCart.cshtml.g.cs
+D:\APS NETCORE\Casetudy\obj\Debug\netcoreapp3.1\Razor\Views\Dashboard\videos.cshtml.g.cs
+D:\APS NETCORE\Casetudy\obj\Debug\netcoreapp3.1\Casetudy.csproj.CoreCompileInputs.cache
+D:\APS NETCORE\Casetudy\obj\Debug\netcoreapp3.1\Casetudy.MvcApplicationPartsAssemblyInfo.cache
+D:\APS NETCORE\Casetudy\obj\Debug\netcoreapp3.1\Razor\Views\Gallerys\Index.cshtml.g.cs

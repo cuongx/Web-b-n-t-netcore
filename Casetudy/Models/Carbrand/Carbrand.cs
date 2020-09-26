@@ -13,6 +13,7 @@ namespace Casetudy.Models
         [Required]
         [MaxLength(100)]
         public string CarbrandName { get; set; }
+        public string AvatarPath { get; set; }
         public ICollection<Employees> Employees { get; set; }
     }
 }

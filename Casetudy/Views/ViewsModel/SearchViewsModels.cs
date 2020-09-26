@@ -8,6 +8,7 @@ namespace Casetudy.Views.ViewsModel
 {
     public class SearchViewsModels
     {
+
         public IEnumerable<Employees> Employees { get; set; }
         public string SearchKey { get; set; }
     }

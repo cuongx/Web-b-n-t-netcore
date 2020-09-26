@@ -1,5 +1,6 @@
 ﻿using Casetudy.Models;
 using Casetudy.Views.ViewsModel.Order;
+using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.Mvc;
 using System;
 using System.Collections.Generic;
@@ -12,46 +13,72 @@ namespace Casetudy.Controllers
     {
         private readonly IOrderRepository orderRepository;
         private readonly IEmployeesRepository employeesRepository;
+        private readonly UserManager<ApplicationUser> userManager;
 
-        public OrderController(IOrderRepository orderRepository,IEmployeesRepository employeesRepository)
+        public OrderController(IOrderRepository orderRepository,IEmployeesRepository employeesRepository, UserManager<ApplicationUser> userManager)
         {
             this.orderRepository = orderRepository;
             this.employeesRepository = employeesRepository;
+            this.userManager = userManager;
         }
+        
         public IActionResult Index()
         {
-            ViewBag.Order = GetEmployees();
-            var emp = orderRepository.Get();
-            var result = emp.Select(a => new Order()
+            object result = null;
+            if (User.IsInRole("Admin")){
+                var emp = orderRepository.Get();
+               result = emp.Select(a => new Order()
+                {
+                    Date = a.Date,
+                    Carname = a.Carname,
+                    City = a.City,
+                    Phone = a.Phone,
+                    OrderName = a.OrderName,
+                    CarColor = a.CarColor,
+                    OrderId = a.OrderId
+                }).ToList();
+            }else
             {
-                Date = a.Date,
-                CarColor = a.CarColor,
-                City = a.City,
-                Phone = a.Phone,
-                OrderName = a.OrderName,
-                Carname = a.Carname,
-                OrderId =a.OrderId
-            }).ToList();
+                var user = userManager.GetUserId(User);
+                 result = orderRepository.Get().Where(a => a.OrderId == user).Select(b => new Order()
+                {
+                    Date = b.Date,
+                    Carname = b.Carname,
+                    City = b.City,
+                    Phone = b.Phone,
+                    OrderName = b.OrderName,
+                    CarColor = b.CarColor,
+                    OrderId = b.OrderId
+                }).ToList();
+            }
             return View(result);
+          //ViewBag.Order = GetEmployees();
+                 
         }
        
         public IActionResult Create()
         {
+            ViewBag.User = userManager.GetUserId(User);
             return View();  
         }
         [HttpPost]
         public IActionResult Create(OrderCreateViewsModel model)
         {
+            //var use = userManager.Users.Select(a => a.Id.Contains(model.OrderId));
+            //ViewBag.User = orderRepository.Gets(userManager.Users.Select(a => a.Id));
+            ViewBag.User = userManager.GetUserId(User);
             ViewBag.Order = GetEmployees();
-            var emp = new Order()
+          var  emp = new Order()
             {
                 CarColor = model.Color,
                 Date = model.Date,
                 OrderName = model.Name,
                 City = model.City,
-                Phone = model.Phone,      
-                Carname = model.CarName
-            };
+                Phone = model.Phone,
+                Carname = model.CarName,
+                OrderId = model.OrderId
+        };
+            ViewBag.User = emp.OrderId;
             var result = orderRepository.Create(emp);
             if(result != null)
             {
@@ -61,8 +88,9 @@ namespace Casetudy.Controllers
             return View(model);
         }
         [HttpGet]
-        public IActionResult Edit(int id)
+        public IActionResult Edit(string id)
         {
+            ViewBag.User = userManager.GetUserId(User);
             var emp = orderRepository.Gets(id);
             var result = new OrderEditViewsModel()
             {
@@ -72,7 +100,7 @@ namespace Casetudy.Controllers
                 City = emp.City,
                 Name = emp.OrderName,
                 Date = emp.Date,
-                Id = emp.OrderId
+                OrderId = emp.OrderId
             };
             return View(result);
         }
@@ -88,7 +116,7 @@ namespace Casetudy.Controllers
                     Carname = model.CarName,
                     City = model.City,
                     OrderName = model.Name,
-                    OrderId = model.Id,
+                    OrderId = model.OrderId,
                     Phone = model.Phone
                 };
                 var result = orderRepository.Edit(emp);
@@ -100,7 +128,7 @@ namespace Casetudy.Controllers
             return View(model);
        
         }
-        public IActionResult Delete(int id)
+        public IActionResult Delete(string id)
         {
             var emp = orderRepository.Gets(id);
             if(emp != null)
